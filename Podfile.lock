@@ -1,0 +1,21 @@
+PODS:
+  - Argo (2.1.0)
+  - Heimdallr (3.0):
+    - Heimdallr/Core (= 3.0)
+  - Heimdallr/Core (3.0):
+    - Argo (= 2.1.0)
+    - KeychainAccess (= 2.2.0)
+    - Result (= 0.6.0-beta.4)
+  - KeychainAccess (2.2.0)
+  - Result (0.6.0-beta.4)
+
+DEPENDENCIES:
+  - Heimdallr (~> 3.0)
+
+SPEC CHECKSUMS:
+  Argo: f65db7f50301f7a623514cca2b15aa63e147b91a
+  Heimdallr: 62623dff4be8d99c159da5b82910ba0e88dadaa8
+  KeychainAccess: c14a391a45bb3efbd63ab9f5a95b5b4e8753a506
+  Result: f7927152cbaec0c043abb06ba0bc432678818418
+
+COCOAPODS: 0.39.0
