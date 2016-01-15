@@ -18,14 +18,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var treeSelected:Bool = true
     var birdSelected:Bool = false
     
+    @IBOutlet weak var treeButton: UIBarButtonItem!
+    @IBOutlet weak var birdButton: UIBarButtonItem!
+    
     @IBAction func treeButtonTapped(sender: UIBarButtonItem) {
         if treeSelected == true{
-            sender.tintColor = UIColor.grayColor()
-            treeSelected = false
+            return;
         }
         else{
             sender.tintColor = UIColor.greenColor()
+            birdButton.tintColor = UIColor.grayColor()
             treeSelected = true
+            birdSelected = false
         }
         
         
@@ -33,12 +37,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     @IBAction func birdButtonTapped(sender: UIBarButtonItem) {
         if birdSelected == true{
-            sender.tintColor = UIColor.grayColor()
-            birdSelected = false
+            return;
         }
         else{
             sender.tintColor = UIColor.redColor()
+            treeButton.tintColor = UIColor.grayColor()
             birdSelected = true
+            treeSelected = false
         }
         
     }
@@ -51,7 +56,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.locationManager.startUpdatingLocation()
         self.MapView.showsUserLocation = true
         
-        //        self.MapView.mapType = MKMapType.Hybrid
+        self.MapView.mapType = MKMapType.Hybrid
     }
     
     override func didReceiveMemoryWarning() {
@@ -112,10 +117,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
             refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
                 //   === TASK 2 ======================
-                //                THIS CODE IS EXECUTED WHEN THE USER DECIDES NOT TO PLACE A TREE, THE PIN THAT WAS PLACED
-                //                SHOULD THEN BE REMOVED, I TRIED IMPLEMENTING THIS PART BUT I RAN INTO THE ISSUE THAT I COULD
-                //                ONLY REMOVE ALL OF THE PINS IN THE VIEW, NOT JUST THE LAST PIN THAT WAS PLACED,
-                //                SEE IF YOU CAN FIGURE OUT HOW TO ONLY REMOVE THE LAST PIN.
+                //  THIS CODE IS EXECUTED WHEN THE USER DECIDES NOT TO PLACE A TREE, THE PIN THAT WAS PLACED
+                //  SHOULD THEN BE REMOVED, I TRIED IMPLEMENTING THIS PART BUT I RAN INTO THE ISSUE THAT I COULD
+                //  ONLY REMOVE ALL OF THE PINS IN THE VIEW, NOT JUST THE LAST PIN THAT WAS PLACED,
+                //  SEE IF YOU CAN FIGURE OUT HOW TO ONLY REMOVE THE LAST PIN.
+                
+                if(self.MapView.annotations.count == 1){
+                    print("Only one annotation left! count = ", self.MapView.annotations.count);
+                    return; // to prevent user from being removed from map
+                }
+                else{
+                    var anno = self.MapView.annotations;
+                    self.MapView.removeAnnotations(self.MapView.annotations);
+                    anno.removeLast();
+                    self.MapView.addAnnotations(anno);
+                    
+                }
                 
             }))
             
@@ -137,7 +154,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         annotation.title = "Tree"
         annotation.subtitle = "Location of Tree"
         
-        //        self.MapView.removeAnnotations(self.MapView.annotations)
+//        self.MapView.removeAnnotations(self.MapView.annotations)
         self.MapView.addAnnotation(annotation)
     }
     

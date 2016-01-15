@@ -61,6 +61,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="MapView" destination="bUJ-64-wjL" id="du7-EI-89c"/>
+                        <outlet property="birdButton" destination="wOO-9h-mH6" id="TE4-fP-y0I"/>
+                        <outlet property="treeButton" destination="QwI-Hc-6ke" id="V6C-pb-MuJ"/>
                         <segue destination="eSZ-4D-Qf8" kind="showDetail" identifier="loginView" id="4xL-Yl-iIt"/>
                     </connections>
                 </viewController>
@@ -323,7 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aTM-Jp-o8H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="14" y="995"/>
+            <point key="canvasLocation" x="-22" y="1149"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pAH-ho-uK4">
