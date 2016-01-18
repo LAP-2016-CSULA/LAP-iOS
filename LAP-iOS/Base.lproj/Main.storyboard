@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bUJ-64-wjL">
-                                <rect key="frame" x="0.0" y="58" width="600" height="542"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="P2d-C3-fE4" appends="YES" id="bic-5M-hMd"/>
@@ -29,10 +28,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="bUJ-64-wjL" secondAttribute="trailing" id="53b-Wg-lzX"/>
-                            <constraint firstItem="bUJ-64-wjL" firstAttribute="leading" secondItem="uuT-CJ-bnl" secondAttribute="leading" id="54h-ZX-Jfh"/>
-                            <constraint firstItem="bUJ-64-wjL" firstAttribute="bottom" secondItem="Ahp-Jh-SLF" secondAttribute="top" id="DAh-JS-xrY"/>
-                            <constraint firstItem="bUJ-64-wjL" firstAttribute="top" secondItem="uuT-CJ-bnl" secondAttribute="topMargin" constant="58" id="Gog-oP-ecZ"/>
+                            <constraint firstItem="bUJ-64-wjL" firstAttribute="leading" secondItem="uuT-CJ-bnl" secondAttribute="leading" id="1xX-KJ-SyP"/>
+                            <constraint firstAttribute="trailing" secondItem="bUJ-64-wjL" secondAttribute="trailing" id="NRm-6v-nUX"/>
+                            <constraint firstItem="bUJ-64-wjL" firstAttribute="bottom" secondItem="Ahp-Jh-SLF" secondAttribute="top" id="Sln-gN-hci"/>
+                            <constraint firstItem="bUJ-64-wjL" firstAttribute="top" secondItem="SIG-4Q-drH" secondAttribute="bottom" id="dHC-E8-JfG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="LAP" id="ddH-WI-DZ6">
@@ -62,6 +61,7 @@
                     <connections>
                         <outlet property="MapView" destination="bUJ-64-wjL" id="du7-EI-89c"/>
                         <outlet property="birdButton" destination="wOO-9h-mH6" id="TE4-fP-y0I"/>
+                        <outlet property="searchDisplayController" destination="LX9-B3-Yt6" id="JbI-w3-WkT"/>
                         <outlet property="treeButton" destination="QwI-Hc-6ke" id="V6C-pb-MuJ"/>
                         <segue destination="eSZ-4D-Qf8" kind="showDetail" identifier="loginView" id="4xL-Yl-iIt"/>
                     </connections>
@@ -72,6 +72,14 @@
                         <action selector="screenLongPressed:" destination="2yv-Os-KqY" id="fvK-11-DWm"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <searchDisplayController id="LX9-B3-Yt6">
+                    <connections>
+                        <outlet property="delegate" destination="2yv-Os-KqY" id="q3F-7a-Ujj"/>
+                        <outlet property="searchContentsController" destination="2yv-Os-KqY" id="6hj-mf-ebJ"/>
+                        <outlet property="searchResultsDataSource" destination="2yv-Os-KqY" id="nkH-3R-2Tz"/>
+                        <outlet property="searchResultsDelegate" destination="2yv-Os-KqY" id="uSJ-M7-fEF"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1350" y="303"/>
         </scene>
@@ -325,7 +333,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aTM-Jp-o8H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-22" y="1149"/>
+            <point key="canvasLocation" x="0.0" y="975"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pAH-ho-uK4">
@@ -344,6 +352,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QgW-Oo-qPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="660" y="319"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lLw-Rm-riB">
+            <objects>
+                <viewController id="fgZ-07-eeD" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="S4e-mh-du5"/>
+                        <viewControllerLayoutGuide type="bottom" id="JkV-xm-FiG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wSQ-vC-Msz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkT-iP-vo6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="660" y="995"/>
         </scene>
     </scenes>
     <resources>

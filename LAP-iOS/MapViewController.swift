@@ -9,10 +9,17 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Heimdallr
+import Alamofire
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var MapView: MKMapView!
+    
+    
+    var heimdallr : Heimdallr!
+    var ats : OAuthAccessTokenKeychainStore!
+
     
     let locationManager = CLLocationManager()
     var treeSelected:Bool = true
@@ -57,6 +64,68 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.MapView.showsUserLocation = true
         
         self.MapView.mapType = MKMapType.Hybrid
+        
+        
+        let url = NSURL(string: "http://isitso.pythonanywhere.com/userinfo/")
+        let request = NSURLRequest(URL: url!)
+        
+        self.heimdallr.invalidateAccessToken();
+        print("-------")
+        print(self.ats.retrieveAccessToken()!.accessToken)
+        
+        _ = self.heimdallr.self.authenticateRequest(request)
+            { (result) in
+                
+                print(self.ats.retrieveAccessToken()!.accessToken)
+                switch result {
+                case .Success:
+                    let parameters  = ["access_token": self.ats.retrieveAccessToken()!.accessToken]
+                    
+                    Alamofire.request(.GET, "http://isitso.pythonanywhere.com/userinfo/", parameters: parameters)
+                        .responseJSON { response in
+                            print(response.result)
+                            
+                    
+                            
+                            if let JSON = response.result.value {
+                                print("JSON: \(JSON["username"])")
+                                
+                                var access = "Student"
+                                
+                                if(String(JSON["is_staff"]) == "true")
+                                {
+                                    access = "Staff"
+                                }
+                                
+                                if(String(JSON["first_name"]).isEmpty && String(JSON["last_name"]).isEmpty)
+                                {
+                                    
+                                    if let t = JSON["username"]! {
+                                    
+                                        let tt = "Welcome " + String(t)
+                                        self.displayMessage(tt)
+                                    }
+                                    
+                                }
+                                else
+                                {
+                                    if let t = JSON["first_name"]!
+                                    {
+                                        if let y = JSON["last_name"]!
+                                        {
+                                            let tt = "Welcome, \n" + String(t) + " " + String(y) + "\nAccess: " + access
+                                            
+                                            self.displayMessage(tt)
+                                        }
+                                    }
+                                }
+                            }
+                    }
+                case .Failure:
+                    print("Failed")
+                }
+                
+        }
     }
     
     override func didReceiveMemoryWarning() {
