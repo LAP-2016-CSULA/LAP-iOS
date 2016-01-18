@@ -164,7 +164,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         self.performSegueWithIdentifier("loginView", sender: self)
     }
-    
+    let annotation = MKPointAnnotation()
     @IBAction func screenLongPressed(sender: UILongPressGestureRecognizer) {
         // DISPLAY ERROR MESSAGE IF TREE AND BIRD IS NOT SELECTED
         if sender.state != UIGestureRecognizerState.Began{
@@ -192,14 +192,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 //  SEE IF YOU CAN FIGURE OUT HOW TO ONLY REMOVE THE LAST PIN.
                 
                 if(self.MapView.annotations.count == 1){
-                    print("Only one annotation left! count = ", self.MapView.annotations.count);
+                    print("Only one annotation left! Which is the user! count = ", self.MapView.annotations.count);
                     return; // to prevent user from being removed from map
                 }
                 else{
-                    var anno = self.MapView.annotations;
-                    self.MapView.removeAnnotations(self.MapView.annotations);
-                    anno.removeLast();
-                    self.MapView.addAnnotations(anno);
+//                    var anno = self.MapView.annotations;
+//                    self.MapView.removeAnnotations(self.MapView.annotations);
+//                    anno.removeLast();
+//                    self.MapView.addAnnotations(anno);
+                    self.MapView.removeAnnotation(self.annotation)
                     
                 }
                 
@@ -217,14 +218,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let location = sender.locationInView(self.MapView)
         let locCoord = self.MapView.convertPoint(location, toCoordinateFromView: self.MapView)
         
-        let annotation = MKPointAnnotation()
-        
-        annotation.coordinate = locCoord
-        annotation.title = "Tree"
-        annotation.subtitle = "Location of Tree"
+        self.annotation.coordinate = locCoord
+        self.annotation.title = "Tree"
+        self.annotation.subtitle = "Location of Tree"
         
 //        self.MapView.removeAnnotations(self.MapView.annotations)
-        self.MapView.addAnnotation(annotation)
+        self.MapView.addAnnotation(self.annotation)
     }
     
     func displayMessage(message: String){
