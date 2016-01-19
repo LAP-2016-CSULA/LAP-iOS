@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Argo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,12 +42,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>1577BB4A59BFDBEC3509AB3FEE787D43</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>28E618D9359494C1A68D1922E59D48BE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8E9711FCB45005CC806E9372F06A9EBA</key>
+		<key>432ECC54282C84882B482CCB4CF227FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

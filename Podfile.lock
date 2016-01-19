@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (3.1.4)
   - Argo (2.1.0)
   - Heimdallr (3.0):
     - Heimdallr/Core (= 3.0)
@@ -10,9 +11,11 @@ PODS:
   - Result (0.6.0-beta.4)
 
 DEPENDENCIES:
+  - Alamofire (~> 3.0)
   - Heimdallr (~> 3.0)
 
 SPEC CHECKSUMS:
+  Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
   Argo: f65db7f50301f7a623514cca2b15aa63e147b91a
   Heimdallr: 62623dff4be8d99c159da5b82910ba0e88dadaa8
   KeychainAccess: c14a391a45bb3efbd63ab9f5a95b5b4e8753a506

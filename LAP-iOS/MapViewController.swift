@@ -9,15 +9,21 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Heimdallr
+import Alamofire
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    @IBOutlet weak var MapView: MKMapView!
+    @IBOutlet weak var mapView: MKMapView!
+    
+    var heimdallr : Heimdallr!
+    var ats : OAuthAccessTokenKeychainStore!
+
     
     let locationManager = CLLocationManager()
     var treeSelected:Bool = true
     var birdSelected:Bool = false
-    
+    var user:String = "";
     @IBOutlet weak var treeButton: UIBarButtonItem!
     @IBOutlet weak var birdButton: UIBarButtonItem!
     
@@ -54,9 +60,71 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
-        self.MapView.showsUserLocation = true
+        self.mapView.showsUserLocation = true
+        self.mapView.mapType = MKMapType.Hybrid
+        self.mapView.delegate = self;
         
-        self.MapView.mapType = MKMapType.Hybrid
+        
+        let url = NSURL(string: "http://isitso.pythonanywhere.com/userinfo/")
+        let request = NSURLRequest(URL: url!)
+        
+        self.heimdallr.invalidateAccessToken();
+        print("-------")
+        print(self.ats.retrieveAccessToken()!.accessToken)
+        
+        _ = self.heimdallr.self.authenticateRequest(request)
+            { (result) in
+                
+                print(self.ats.retrieveAccessToken()!.accessToken)
+                switch result {
+                case .Success:
+                    let parameters  = ["access_token": self.ats.retrieveAccessToken()!.accessToken]
+                    
+                    Alamofire.request(.GET, "http://isitso.pythonanywhere.com/userinfo/", parameters: parameters)
+                        .responseJSON { response in
+                            print(response.result)
+                            
+                    
+                            
+                            if let JSON = response.result.value {
+                                print("JSON: \(JSON["username"])")
+                                
+                                var access = "Student"
+                                
+                                if(String(JSON["is_staff"]) == "true")
+                                {
+                                    access = "Staff"
+                                }
+                                
+                                if(String(JSON["first_name"]).isEmpty && String(JSON["last_name"]).isEmpty)
+                                {
+                                    
+                                    if let t = JSON["username"]! {
+                                    
+                                        let tt = "Welcome " + String(t)
+                                        self.displayMessage(tt)
+                                    }
+                                    
+                                }
+                                else
+                                {
+                                    if let t = JSON["first_name"]!
+                                    {
+                                        if let y = JSON["last_name"]!
+                                        {
+                                            let tt = "Welcome, \n" + String(t) + " " + String(y) + "\nAccess: " + access
+                                            self.user = String(t) + " " + String(y)
+                                            self.displayMessage(tt)
+                                        }
+                                    }
+                                }
+                            }
+                    }
+                case .Failure:
+                    print("Failed")
+                }
+                
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -70,7 +138,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.0011, longitudeDelta: 0.0011))
         
-        self.MapView.setRegion(region, animated: true)
+        self.mapView.setRegion(region, animated: true)
         
         self.locationManager.stopUpdatingLocation()
     }
@@ -96,15 +164,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.performSegueWithIdentifier("loginView", sender: self)
     }
     
+    
+    
     @IBAction func screenLongPressed(sender: UILongPressGestureRecognizer) {
         // DISPLAY ERROR MESSAGE IF TREE AND BIRD IS NOT SELECTED
         if sender.state != UIGestureRecognizerState.Began{
             return;
         }
-        if treeSelected == false && birdSelected == false{
-            displayMessage("Select a tree or bird to place")
-            return;
-        }
+        let annotation = MKPointAnnotation();
         if treeSelected == true {
             let refreshAlert = UIAlertController(title: "LAP", message: "Add tree at this location?", preferredStyle: UIAlertControllerStyle.Alert)
             
@@ -116,46 +183,39 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }))
             
             refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
-                //   === TASK 2 ======================
-                //  THIS CODE IS EXECUTED WHEN THE USER DECIDES NOT TO PLACE A TREE, THE PIN THAT WAS PLACED
-                //  SHOULD THEN BE REMOVED, I TRIED IMPLEMENTING THIS PART BUT I RAN INTO THE ISSUE THAT I COULD
-                //  ONLY REMOVE ALL OF THE PINS IN THE VIEW, NOT JUST THE LAST PIN THAT WAS PLACED,
-                //  SEE IF YOU CAN FIGURE OUT HOW TO ONLY REMOVE THE LAST PIN.
-                
-                if(self.MapView.annotations.count == 1){
-                    print("Only one annotation left! count = ", self.MapView.annotations.count);
+
+                if(self.mapView.annotations.count == 1){
+                    print("Only one annotation left! Which is the user! count = ", self.mapView.annotations.count);
                     return; // to prevent user from being removed from map
                 }
                 else{
-                    var anno = self.MapView.annotations;
-                    self.MapView.removeAnnotations(self.MapView.annotations);
-                    anno.removeLast();
-                    self.MapView.addAnnotations(anno);
+                    self.mapView.removeAnnotation(annotation)
                     
                 }
                 
             }))
             
             presentViewController(refreshAlert, animated: true, completion: nil)
+            self.setPin(sender, annotation: annotation)
         }
-        self.setPin(sender)
-        
-        
         
     }
-    
-    func setPin(sender: UILongPressGestureRecognizer){
-        let location = sender.locationInView(self.MapView)
-        let locCoord = self.MapView.convertPoint(location, toCoordinateFromView: self.MapView)
-        
-        let annotation = MKPointAnnotation()
+//    This method will be used to select a tree to match with a bird
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        if(birdSelected){ // Bird is selected so do bird and tree matching
+            print("Tree selected!!");
+        }
+    }
+    func setPin(sender: UILongPressGestureRecognizer, annotation: MKPointAnnotation){
+        let location = sender.locationInView(self.mapView)
+        let locCoord = self.mapView.convertPoint(location, toCoordinateFromView: self.mapView)
         
         annotation.coordinate = locCoord
-        annotation.title = "Tree"
-        annotation.subtitle = "Location of Tree"
+        annotation.title = "California Sycamore"
+        annotation.subtitle = "Added by: "+self.user  ;
         
-//        self.MapView.removeAnnotations(self.MapView.annotations)
-        self.MapView.addAnnotation(annotation)
+        self.mapView.addAnnotation(annotation)
+        
     }
     
     func displayMessage(message: String){
