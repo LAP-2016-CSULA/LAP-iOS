@@ -14,7 +14,7 @@ import Alamofire
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var MapView: MKMapView!
     
     var heimdallr : Heimdallr!
     var ats : OAuthAccessTokenKeychainStore!
