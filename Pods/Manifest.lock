@@ -1,0 +1,31 @@
+PODS:
+  - Alamofire (3.3.0)
+  - AlamofireImage (2.4.0):
+    - Alamofire (~> 3.3)
+  - Argo (2.3.0)
+  - Heimdallr (3.2.1):
+    - Heimdallr/Core (= 3.2.1)
+  - Heimdallr/Core (3.2.1):
+    - Argo (~> 2.2)
+    - Result (~> 1.0)
+  - Kingfisher (2.2.0)
+  - Result (1.0.2)
+  - SQLite.swift (0.10.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.0)
+  - AlamofireImage (~> 2.0)
+  - Heimdallr (~> 3.0)
+  - Kingfisher (~> 2.0)
+  - SQLite.swift (~> 0.10.1)
+
+SPEC CHECKSUMS:
+  Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
+  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
+  Argo: 3dbecf4204b1a3cdd1df88ebd5e23d01b652d34b
+  Heimdallr: f4e8dfded98a884c015d47db19e48d45a962963c
+  Kingfisher: 350869ed88d6451803b390475d977abdd9f0a357
+  Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
+  SQLite.swift: 6a6e4b034efc317ce4e203b6af2d3024fee2b570
+
+COCOAPODS: 0.39.0
