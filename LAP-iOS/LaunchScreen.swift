@@ -16,12 +16,13 @@ class LaunchScreen : UIViewController {
     
     var heimdallr : Heimdallr!
     
-
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
         let userName: String? = KeychainWrapper.stringForKey("username");
         let userPassword: String? = KeychainWrapper.stringForKey("p")
         if userName != nil && userPassword != nil
@@ -77,6 +78,7 @@ class LaunchScreen : UIViewController {
                 self.performSegueWithIdentifier("toLoginView", sender: self)
             }
         }
+
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
