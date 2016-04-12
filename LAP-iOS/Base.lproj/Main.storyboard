@@ -1030,7 +1030,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="eSZ-4D-Qf8" kind="showDetail" identifier="toLogin" id="dLp-q0-6R0"/>
+                        <segue destination="eSZ-4D-Qf8" kind="showDetail" identifier="toLoginView" id="dLp-q0-6R0"/>
                         <segue destination="cfg-UJ-CaU" kind="showDetail" identifier="toMap" id="ucn-LP-wTs"/>
                     </connections>
                 </viewController>

@@ -16,25 +16,28 @@ class LaunchScreen : UIViewController {
     
     var heimdallr : Heimdallr!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+
     
-    override func viewWillAppear(animated: Bool)
+    override func viewDidLoad()
     {
+        super.viewDidLoad()
+
         let userName: String? = KeychainWrapper.stringForKey("username");
         let userPassword: String? = KeychainWrapper.stringForKey("p")
-        
         if userName != nil && userPassword != nil
         {
+            print(userName)
             var confirmed = false;
             let tokenURL = NSURL(string: "http://isitso.pythonanywhere.com/o/token/")!
             let identifier: String  =  "UEnyWPl9HbI7H1cX8T282IQ01xIF8Y9RWC02jYUh"
             let secret: String = "h1HwH0Br8LGYVigcOdzeYxn3mcCjunxq2CCfbyLTnX8wBbp7ZrBO20oOBiFWkN6rReegKz9lVxO30iLfZ8eheeWTPx3KEPEBHOjMrlFnmOPKm0i57trBfWjHvzisRLXH";
+            
             let credential = OAuthClientCredentials(id: identifier, secret: secret)
             
             self.heimdallr = Heimdallr(tokenURL: tokenURL, credentials: credential, accessTokenStore: self.ats)
-            self.heimdallr.requestAccessToken(username: userName!, password: userPassword!) { result in
+            
+            self.heimdallr.requestAccessToken(username: userName!, password: userPassword!)
+            { result in
                 switch result
                 {
                 case .Success:
@@ -55,18 +58,24 @@ class LaunchScreen : UIViewController {
                         NSUserDefaults.standardUserDefaults().synchronize();
                         
                         KeychainWrapper.setString(userName!, forKey:"username");
+                        
                         KeychainWrapper.setString(userPassword!, forKey: "p");
                         
                         self.performSegueWithIdentifier("toMap", sender: self)
                     }
-                    else{
-                        self.performSegueWithIdentifier("toLogin", sender: self)
+                    else
+                    {
+                        self.performSegueWithIdentifier("toLoginView", sender: self)
                     }
                 }
             }
         }
-        else{
-            self.performSegueWithIdentifier("toMap", sender: self)
+        else
+        {
+            dispatch_async(dispatch_get_main_queue())
+            {
+                self.performSegueWithIdentifier("toLoginView", sender: self)
+            }
         }
     }
     
