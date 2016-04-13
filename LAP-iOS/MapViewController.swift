@@ -451,6 +451,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     @IBAction func pinUserLocationButton(sender: AnyObject) {
+        self.moveMapOverUser(sender);
         let userLocation = MapView.userLocation;
         let annotation = CustomPointAnnotation();
         let refreshAlert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
