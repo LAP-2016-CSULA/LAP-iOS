@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LAP-iOS/LoginViewController.swift"
-            timestampString = "481924293.204858"
+            timestampString = "482360869.423954"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "login(_:userPassword:)"
             landmarkType = "5">
          </BreakpointContent>

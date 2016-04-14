@@ -17,7 +17,7 @@ import SQLite
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var MapView: MKMapView!
-    
+    @IBOutlet weak var addTreeOnUserButton: UIBarButtonItem!
     @IBOutlet weak var bottomBar: UINavigationItem!
     
     var heimdallr : Heimdallr!
@@ -28,6 +28,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     let locationManager = CLLocationManager()
     var delAnnot = CustomPointAnnotation!();
     var observation: Observation!;
+    var guestLoggedIn: Bool!;
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -49,10 +50,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.MapView.removeAnnotations(MapView.annotations)
 
         self.observation = Observation(ats: self.ats, heimdallr: self.heimdallr);
+        if self.guestLoggedIn != nil{
+            if(self.guestLoggedIn == true){
+                self.observation.guest = true;
+                self.addTreeOnUserButton.enabled = false;
+                self.addTreeOnUserButton.tintColor = UIColor.clearColor();
+                self.MapView.gestureRecognizers?.removeAll();
+            }
+        }
+        
         if let tempAnnot = delAnnot
         {
-            self.MapView.removeAnnotation(tempAnnot)
-            self.delAnnot = CustomPointAnnotation!()
+            self.MapView.removeAnnotation(tempAnnot);
+            self.delAnnot = CustomPointAnnotation!();
         }
         
         let path = NSSearchPathForDirectoriesInDomains(
@@ -301,6 +311,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func logIn(){
         self.observation = Observation(ats: self.ats, heimdallr: self.heimdallr);
+        
         let url = NSURL(string: "http://isitso.pythonanywhere.com/userinfo/")
         let request = NSURLRequest(URL: url!);
         
@@ -333,8 +344,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                 {
 
                                     if let t = JSON1["username"]! {
-                                        _ = "Welcome, " + String(t) + "\nAccess: " + access
-//                                        self.displayMessage(tt)
+                                        let tt = "Welcome " + String(t) + "\nAccess: " + access
+                                        self.displayMessage(String(tt));
                                     }
                                     
                                 }
@@ -344,9 +355,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                     {
                                         if let y = JSON1["last_name"]!
                                         {
-                                            _ = "Welcome, \n" + String(t) + " " + String(y) + "\nAccess: " + access
+                                            let tt = "Welcome " + String(t) + " " + String(y) + "\nAccess: " + access
                                             self.userName = String(t);
-//                                            self.displayMessage(tt)
+                                            self.displayMessage(String(tt));
                                         }
                                     }
                                 }

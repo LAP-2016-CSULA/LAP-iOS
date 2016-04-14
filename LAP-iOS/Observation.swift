@@ -26,6 +26,7 @@ class Observation{
     var specie: JSON = [:];
     var species = [JSON]();
     var viewOnly = false;
+    var guest = false;
     
     init(ats: OAuthAccessTokenKeychainStore, heimdallr: Heimdallr) {
         self.ats = ats;

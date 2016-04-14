@@ -38,14 +38,14 @@
                                             </connections>
                                         </barButtonItem>
                                         <rightBarButtonItems>
-                                            <barButtonItem image="addTree" id="Wfc-mV-sMo">
-                                                <connections>
-                                                    <action selector="pinUserLocationButton:" destination="2yv-Os-KqY" id="4sa-Hy-8O3"/>
-                                                </connections>
-                                            </barButtonItem>
                                             <barButtonItem image="userarrow" id="rSx-p1-EmT">
                                                 <connections>
                                                     <action selector="moveMapOverUser:" destination="2yv-Os-KqY" id="ErL-jI-S8C"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem image="addTree" id="Wfc-mV-sMo">
+                                                <connections>
+                                                    <action selector="pinUserLocationButton:" destination="2yv-Os-KqY" id="4sa-Hy-8O3"/>
                                                 </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
@@ -80,6 +80,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="MapView" destination="bUJ-64-wjL" id="du7-EI-89c"/>
+                        <outlet property="addTreeOnUserButton" destination="Wfc-mV-sMo" id="0LY-dI-bhE"/>
                         <outlet property="bottomBar" destination="GM9-5R-89C" id="WVK-5a-vkM"/>
                         <outlet property="searchDisplayController" destination="LX9-B3-Yt6" id="JbI-w3-WkT"/>
                         <segue destination="eSZ-4D-Qf8" kind="showDetail" identifier="loginView" id="4xL-Yl-iIt"/>
@@ -141,7 +142,7 @@
                                             <barButtonItem image="bird" id="Ek6-qO-F90">
                                                 <inset key="imageInsets" minX="0.0" minY="2" maxX="0.0" maxY="-2"/>
                                                 <connections>
-                                                    <segue destination="AX2-Dt-PAE" kind="showDetail" identifier="toBirdList" action="showViewController:sender:" id="KlQ-KI-Pc9"/>
+                                                    <segue destination="AX2-Dt-PAE" kind="showDetail" identifier="toBirdList" animates="NO" action="showViewController:sender:" id="KlQ-KI-Pc9"/>
                                                 </connections>
                                             </barButtonItem>
                                         </leftBarButtonItems>
@@ -346,7 +347,7 @@
                         <outlet property="name" destination="BNf-u9-1Ln" id="MKQ-7t-3wk"/>
                         <outlet property="nextButton" destination="dDl-Kb-P1f" id="zjA-7A-HjD"/>
                         <outlet property="textView" destination="67K-kq-laQ" id="dY1-bb-alD"/>
-                        <segue destination="y5M-TV-fT5" kind="showDetail" identifier="toTreeQuestions" action="showViewController:sender:" id="r2X-99-Z5E"/>
+                        <segue destination="y5M-TV-fT5" kind="showDetail" identifier="toTreeQuestions" animates="NO" action="showViewController:sender:" id="r2X-99-Z5E"/>
                         <segue destination="xuf-nf-kkY" kind="showDetail" identifier="toBirdQuestions" action="showViewController:sender:" id="FrA-q6-GRM"/>
                     </connections>
                 </viewController>
@@ -440,13 +441,13 @@
                                     <constraint firstAttribute="width" constant="300" id="z8D-Ux-KVr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IyY-tZ-ic7">
                                 <rect key="frame" x="150" y="248" width="300" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTS-wK-bih">
@@ -455,7 +456,7 @@
                                     <constraint firstAttribute="width" constant="280" id="Va2-61-ZNe"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="B1D-32-rhG">
@@ -469,7 +470,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JF9-yP-pMP">
                                 <rect key="frame" x="249" y="407" width="103" height="31"/>
-                                <color key="backgroundColor" red="0.56365166663784805" green="0.9161269796" blue="0.40688017895726059" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.73333333329999995" green="0.8862745098" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="103" id="HdQ-MU-WqC"/>
                                 </constraints>
@@ -493,8 +494,18 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="OhU-B8-MQn">
                                 <rect key="frame" x="217" y="28" width="166" height="166"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C46-bY-6NQ">
+                                <rect key="frame" x="249" y="446" width="103" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="T6P-TP-1V5"/>
+                                </constraints>
+                                <state key="normal" title="Guest"/>
+                                <connections>
+                                    <action selector="guestLoginbuttonTapped:" destination="eSZ-4D-Qf8" eventType="touchUpInside" id="AjE-aa-R8Y"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.72941176470000002" green="0.83921568629999999" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="IyY-tZ-ic7" firstAttribute="leading" secondItem="8H5-47-vyV" secondAttribute="leading" id="2N9-yk-1V0"/>
                             <constraint firstItem="IyY-tZ-ic7" firstAttribute="trailing" secondItem="8H5-47-vyV" secondAttribute="trailing" id="7i5-6a-r82"/>
@@ -507,11 +518,13 @@
                             <constraint firstItem="NKH-5N-246" firstAttribute="trailing" secondItem="IyY-tZ-ic7" secondAttribute="trailing" id="XrH-kt-Tsx"/>
                             <constraint firstItem="8H5-47-vyV" firstAttribute="trailing" secondItem="B1D-32-rhG" secondAttribute="trailing" id="Zyn-AN-4Hm"/>
                             <constraint firstItem="gTS-wK-bih" firstAttribute="top" secondItem="8H5-47-vyV" secondAttribute="bottom" constant="15" id="a0F-Nh-xWB"/>
+                            <constraint firstItem="C46-bY-6NQ" firstAttribute="top" secondItem="JF9-yP-pMP" secondAttribute="bottom" constant="8" id="f1s-9v-NHo"/>
                             <constraint firstItem="OhU-B8-MQn" firstAttribute="centerX" secondItem="RC4-xy-xwK" secondAttribute="centerX" id="gwK-V5-FvZ"/>
                             <constraint firstItem="OhU-B8-MQn" firstAttribute="top" secondItem="557-jg-1lf" secondAttribute="bottom" constant="8" symbolic="YES" id="jHQ-WN-ufP"/>
                             <constraint firstItem="B1D-32-rhG" firstAttribute="top" secondItem="gTS-wK-bih" secondAttribute="bottom" constant="8" symbolic="YES" id="kCc-eO-4UD"/>
                             <constraint firstItem="gTS-wK-bih" firstAttribute="leading" secondItem="B1D-32-rhG" secondAttribute="leading" id="koP-5v-hy3"/>
                             <constraint firstItem="NKH-5N-246" firstAttribute="leading" secondItem="IyY-tZ-ic7" secondAttribute="leading" id="oR8-Kn-faa"/>
+                            <constraint firstItem="C46-bY-6NQ" firstAttribute="centerX" secondItem="RC4-xy-xwK" secondAttribute="centerX" id="rpu-3U-o6C"/>
                             <constraint firstItem="IyY-tZ-ic7" firstAttribute="top" secondItem="OhU-B8-MQn" secondAttribute="bottom" constant="54" id="sSa-sG-mhB"/>
                             <constraint firstItem="NKH-5N-246" firstAttribute="top" secondItem="557-jg-1lf" secondAttribute="bottom" constant="169" id="sfb-nH-pdp"/>
                         </constraints>
@@ -1050,9 +1063,9 @@
         <image name="userarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gHe-5p-bbL"/>
-        <segue reference="1S0-aG-Ehs"/>
-        <segue reference="ErI-fR-65I"/>
+        <segue reference="F7z-zX-Gm6"/>
+        <segue reference="Rwx-3E-aso"/>
         <segue reference="4xL-Yl-iIt"/>
+        <segue reference="ErI-fR-65I"/>
     </inferredMetricsTieBreakers>
 </document>

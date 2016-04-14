@@ -15,9 +15,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var userPasswordTextField: UITextField!
     
-    let ats = OAuthAccessTokenKeychainStore(service: "http://isitso.pythonanywhere.com/o/token/")
-    
+    let ats = OAuthAccessTokenKeychainStore(service: "http://isitso.pythonanywhere.com/o/token/");
     var heimdallr : Heimdallr!
+    var guestLoggedIn = false;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +54,34 @@ class LoginViewController: UIViewController {
  
     }
         
+    @IBAction func guestLoginbuttonTapped(sender: AnyObject) {
+        var confirmed = false;
+        let tokenURL = NSURL(string: "http://isitso.pythonanywhere.com/o/token/")!
+        let identifier: String  =  "UEnyWPl9HbI7H1cX8T282IQ01xIF8Y9RWC02jYUh"
+        let secret: String = "h1HwH0Br8LGYVigcOdzeYxn3mcCjunxq2CCfbyLTnX8wBbp7ZrBO20oOBiFWkN6rReegKz9lVxO30iLfZ8eheeWTPx3KEPEBHOjMrlFnmOPKm0i57trBfWjHvzisRLXH";
+        let credential = OAuthClientCredentials(id: identifier, secret: secret);
+        self.heimdallr = Heimdallr(tokenURL: tokenURL, credentials: credential, accessTokenStore: self.ats);
+        self.guestLoggedIn = true;
+        self.heimdallr.requestAccessToken(username: "guest", password: "guest123456789101112LAP") { result in
+            switch result {
+            case .Success:
+                confirmed = true
+                
+            case .Failure(let error):
+                print("failure: \(error)")
+                print("--------------------")
+                print(error.localizedDescription)
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                if(confirmed){
+                    self.performSegueWithIdentifier("loginSuccessful", sender: self);
+                }
+            }
+            
+        }
+    }
+    
     func displayMessage(message: String){
         let myAlert = UIAlertController(title:"Alert", message:message, preferredStyle: UIAlertControllerStyle.Alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
@@ -61,7 +89,7 @@ class LoginViewController: UIViewController {
         self.presentViewController(myAlert, animated:true, completion: nil);
     }
     
-func login(userName: String, userPassword: String){
+    func login(userName: String, userPassword: String){
         var confirmed = false;
         let tokenURL = NSURL(string: "http://isitso.pythonanywhere.com/o/token/")!
         let identifier: String  =  "UEnyWPl9HbI7H1cX8T282IQ01xIF8Y9RWC02jYUh"
@@ -90,7 +118,7 @@ func login(userName: String, userPassword: String){
                     KeychainWrapper.setString(userName, forKey:"username");
                     KeychainWrapper.setString(userPassword, forKey: "p");
                     
-                    self.performSegueWithIdentifier("loginSuccessful", sender: self)
+                    self.performSegueWithIdentifier("loginSuccessful", sender: self);
                 }
                 else
                 {
@@ -116,6 +144,7 @@ func login(userName: String, userPassword: String){
             
             heim.heimdallr = self.heimdallr
             heim.ats = self.ats
+            heim.guestLoggedIn = self.guestLoggedIn;
         }
     }
 }

@@ -51,7 +51,11 @@ class ViewSpecie: UIViewController {
         
         if(observation.viewOnly == true){
             nextButton.enabled = false;
-            nextButton.tintColor = UIColor.clearColor()
+            nextButton.tintColor = UIColor.clearColor();
+        }
+        if(observation.guest == true){
+            nextButton.enabled = false;
+            nextButton.tintColor = UIColor.clearColor();
         }
         
     }
