@@ -27,7 +27,6 @@ class LaunchScreen : UIViewController {
         let userPassword: String? = KeychainWrapper.stringForKey("p")
         if userName != nil && userPassword != nil
         {
-            print(userName)
             var confirmed = false;
             let tokenURL = NSURL(string: "http://isitso.pythonanywhere.com/o/token/")!
             let identifier: String  =  "UEnyWPl9HbI7H1cX8T282IQ01xIF8Y9RWC02jYUh"

@@ -344,8 +344,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                 {
 
                                     if let t = JSON1["username"]! {
-                                        let tt = "Welcome " + String(t) + "\nAccess: " + access
-                                        self.displayMessage(String(tt));
+                                        let tt = String(t) + "\nAccess: " + access
+                                        self.displayMessage(String(tt), title:"Welcome");
                                     }
                                     
                                 }
@@ -355,9 +355,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                     {
                                         if let y = JSON1["last_name"]!
                                         {
-                                            let tt = "Welcome " + String(t) + " " + String(y) + "\nAccess: " + access
+                                            let tt = String(t) + " " + String(y) + "\nAccess: " + access
                                             self.userName = String(t);
-                                            self.displayMessage(String(tt));
+                                            self.displayMessage(String(tt),title:"Welcome");
                                         }
                                     }
                                 }
@@ -462,6 +462,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     @IBAction func pinUserLocationButton(sender: AnyObject) {
+        if(MapView.userLocation.coordinate.latitude == 0 && MapView.userLocation.coordinate.longitude == 0){
+            displayMessage("Cannot locate user, Please make sure LAP has user location turned on",title: "Error");
+            return;
+        }
         self.moveMapOverUser(sender);
         let userLocation = MapView.userLocation;
         let annotation = CustomPointAnnotation();
@@ -532,6 +536,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     @IBAction func moveMapOverUser(sender: AnyObject) {
+        if(MapView.userLocation.coordinate.latitude == 0 && MapView.userLocation.coordinate.longitude == 0){
+            displayMessage("Cannot locate user, Please make sure LAP has user location turned on",title: "Error");
+            return;
+        }
         let location = MapView.userLocation;
         
         let center = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
@@ -540,6 +548,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         self.MapView.setRegion(region, animated: true);
     }
+    
+    func mapView(mapView: MKMapView, didFailToLocateUserWithError error: NSError) {
+        displayMessage("Cannot locate user, Please make sure LAP has user location turned on",title: "Error");
+    }
+    
     func setUserPin(sender: MKUserLocation, annotation: CustomPointAnnotation){
         self.observation.setTreeLocation(sender.coordinate);
         annotation.coordinate = (sender.location?.coordinate)!;
@@ -555,8 +568,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.MapView.addAnnotation(annotation)
     }
     
-    func displayMessage(message: String){
-        let myAlert = UIAlertController(title:"LAP", message:message, preferredStyle: UIAlertControllerStyle.Alert);
+    func displayMessage(message: String, title: String){
+        let myAlert = UIAlertController(title:title, message:message, preferredStyle: UIAlertControllerStyle.Alert);
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil);
         myAlert.addAction(okAction);
         self.presentViewController(myAlert, animated:true, completion: nil);
