@@ -345,7 +345,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
                                     if let t = JSON1["username"]! {
                                         let tt = String(t) + "\nAccess: " + access
-                                        self.displayMessage(String(tt), title:"Welcome");
+//                                        self.displayMessage(String(tt), title:"Welcome");
                                     }
                                     
                                 }
@@ -357,7 +357,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                         {
                                             let tt = String(t) + " " + String(y) + "\nAccess: " + access
                                             self.userName = String(t);
-                                            self.displayMessage(String(tt),title:"Welcome");
+//                                            self.displayMessage(String(tt),title:"Welcome");
                                         }
                                     }
                                 }
