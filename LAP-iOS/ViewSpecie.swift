@@ -23,13 +23,13 @@ class ViewSpecie: UIViewController {
     @IBOutlet var imageView: UIImageView!
     
     @IBOutlet weak var bottomBar: UINavigationItem!
-    @IBOutlet weak var name: UILabel!
+//    @IBOutlet weak var name: UILabel!
     @IBOutlet var nextButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Specie";
+//        title = "Specie";
         let logo = UIImage(named: "topbaricon");
         let imageView = UIImageView(image:logo);
         self.bottomBar.titleView = imageView;
@@ -40,8 +40,8 @@ class ViewSpecie: UIViewController {
         self.imageView.kf_setImageWithResource(resource, placeholderImage: nil,
             optionsInfo: [.Transition(ImageTransition.Fade(1))])
         
-        self.name.text = String(self.observation.specie["name"])
-        
+//        self.name.text = String(self.observation.specie["name"])
+        title = String(self.observation.specie["name"]);
         
         //does not allow text view to be edited.
         textView.editable = false
