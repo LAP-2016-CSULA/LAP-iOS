@@ -47,7 +47,8 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
         else{
             self.doneButton.enabled = false;
         }
-        _ = self.observation.heimdallr.self.authenticateRequest(request)
+        
+        self.observation.heimdallr.self.authenticateRequest(request)
             { (result) in
                 switch result {
                 case .Success:
@@ -66,6 +67,8 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
                                     var temp : JSON = jso
                                     self.questions.append(String(temp["text"]))
                                 }
+                                
+                                print(self.questionsObject)
                                 
                             }
                             dispatch_async(dispatch_get_main_queue()) {
@@ -143,18 +146,24 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
         
         let uploadChecked = NSMutableData()
         
-        var counter = 3
-        for i in 0...self.selected.count-1
+        for i in 0...self.questionsObject.count-1
         {
-            if(self.selected[i])
+            for (_,choice) in self.questionsObject[i]["choices"]
             {
-                self.selectedInts.append(String(counter))
+                if(selected[i])
+                {
+                    if(String(choice["value"]).lowercaseString == "true")
+                    {
+                        self.selectedInts.append(String(choice["id"]))
+                    }
+                }
+                else{
+                    if(String(choice["value"]).lowercaseString == "false")
+                    {
+                        self.selectedInts.append(String(choice["id"]))
+                    }
+                }
             }
-            else
-            {
-                self.selectedInts.append(String(counter+1))
-            }
-            counter += 2
         }
         
         let spaghettipizza = [0]
@@ -221,7 +230,9 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
                                     encodingResult in
                                     switch encodingResult {
                                     case .Success(let upload, _, _ ):
-                                        upload.responseJSON { response in                                            
+                                        upload.responseJSON { response in
+                                            print("-------------")
+                                            print(response)
                                         }
                                     case .Failure(let encodingError):
                                         print("Failure")
@@ -289,7 +300,6 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
                         switch encodingResult {
                         case .Success(let upload, _, _ ):
                             upload.responseJSON { response in
-                                print(response)
                             }
                         case .Failure(let encodingError):
                             print("Failure")
