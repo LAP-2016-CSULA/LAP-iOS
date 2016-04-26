@@ -86,7 +86,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let image = Expression<String>("image")
         let date_modified = Expression<String>("date_modified")
         
-        
         if(!tableExists("treeTable"))
         {
             print("Table Doesn't exist, Creating database")
@@ -175,6 +174,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         else{
             let lastUpdate = String(NSUserDefaults.standardUserDefaults().valueForKey("lastUpdate")!)
             
+            print(lastUpdate);
             let url = NSURL(string: "http://isitso.pythonanywhere.com/treespecies/")
             
             let request = NSURLRequest(URL: url!)
@@ -591,7 +591,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             return false
         }
     }
-
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
