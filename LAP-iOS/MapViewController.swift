@@ -86,6 +86,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let image = Expression<String>("image")
         let date_modified = Expression<String>("date_modified")
         
+        //table doesnt exist
         if(!tableExists("treeTable"))
         {
             print("Table Doesn't exist, Creating database")
@@ -171,6 +172,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 }
             }
         }
+        //table already created
         else{
             let lastUpdate = String(NSUserDefaults.standardUserDefaults().valueForKey("lastUpdate")!)
             
@@ -251,6 +253,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                 self.combineCloseAnnotations()
                                 
                             }
+                            
+                            Alamofire.request(.GET, "http://isitso.pythonanywhere.com/deletedtrees", parameters: parameters)
+                                .responseJSON
+                                { response in
+                                    
+                                    if let JSON1 = response.result.value
+                                    {
+                                        for(_,jso) in JSON(JSON1)
+                                        {
+                                            print("deleted tree")
+                                            let treeQuery = Table("treeTable")
+                                            let tempInt : Int64 = Int64(String(jso["tree_id"]))!
+                                            
+                                            try! db.run(treeQuery.filter(id == tempInt).delete())
+                                        }
+                                    }
+                            }
                     }
                 case .Failure:
                     print("Failed")
@@ -258,11 +277,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
             
             dispatch_async(dispatch_get_main_queue()) {
+                self.MapView.reloadInputViews();
                 let currentDate = NSDate()
                 
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 NSUserDefaults.standardUserDefaults().setValue(String(dateFormatter.stringFromDate(currentDate)), forKey: "lastUpdate")
+                
             }
         }
         
