@@ -199,13 +199,13 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
                                 "http://isitso.pythonanywhere.com/dailyupdates/",
                                 multipartFormData: {
                                     multipartFormData in
+                                    print(self.observation.specie)
                                     multipartFormData.appendBodyPart(data: String(tempObject["id"]).dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "tree")
                                     
                                     for object in self.selectedInts
                                     {
                                         multipartFormData.appendBodyPart(data: String(object).dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "choices")
                                     }
-                                
                                     multipartFormData.appendBodyPart(data: UIImageJPEGRepresentation(self.image, 0.5)!, name: "image", fileName: "tree.jpg", mimeType: "image/jpg")
 
                                     if(self.birdsPerched.count != 0)
@@ -221,7 +221,9 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
                                     encodingResult in
                                     switch encodingResult {
                                     case .Success(let upload, _, _ ):
-                                        upload.responseJSON { response in                                            
+                                        upload.responseJSON { response in
+                                            print(response)
+
                                         }
                                     case .Failure(let encodingError):
                                         print("Failure")
@@ -269,7 +271,6 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
                         {
                             multipartFormData.appendBodyPart(data: String(object).dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "choices")
                         }
-                        
                         if(self.image != nil)
                         {
                             multipartFormData.appendBodyPart(data: UIImageJPEGRepresentation(self.image, 0.5)!, name: "image", fileName: "tree.jpg", mimeType: "image/jpg")
@@ -341,7 +342,6 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
         image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
         return newImage
     }
     

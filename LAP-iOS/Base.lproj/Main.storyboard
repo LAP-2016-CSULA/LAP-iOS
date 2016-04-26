@@ -669,7 +669,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4ik-ZQ-JhY">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" red="0.72941176470000002" green="0.83921568629999999" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ipp-1a-Grg">
                                     <size key="itemSize" width="350" height="140"/>
@@ -734,7 +734,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4ik-ZQ-JhY" firstAttribute="leading" secondItem="AV7-08-sik" secondAttribute="leading" id="0LC-Ee-fct"/>
-                            <constraint firstItem="4ik-ZQ-JhY" firstAttribute="bottom" secondItem="jZF-rv-jSI" secondAttribute="top" id="0zl-No-RDW"/>
+                            <constraint firstItem="4ik-ZQ-JhY" firstAttribute="bottom" secondItem="jZF-rv-jSI" secondAttribute="top" constant="-44" id="0zl-No-RDW"/>
                             <constraint firstItem="AV7-08-sik" firstAttribute="bottom" secondItem="jZF-rv-jSI" secondAttribute="top" id="JoD-wV-4xF"/>
                             <constraint firstItem="4ik-ZQ-JhY" firstAttribute="top" secondItem="oz9-JS-Yvb" secondAttribute="top" id="X0H-5k-3Lh"/>
                             <constraint firstItem="4ik-ZQ-JhY" firstAttribute="trailing" secondItem="AV7-08-sik" secondAttribute="trailing" id="kmv-pl-1gd"/>
@@ -1052,9 +1052,9 @@
         <image name="userarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="F7z-zX-Gm6"/>
-        <segue reference="Rwx-3E-aso"/>
         <segue reference="dLp-q0-6R0"/>
+        <segue reference="Rwx-3E-aso"/>
         <segue reference="6lt-lo-ANv"/>
+        <segue reference="bnj-WA-7GP"/>
     </inferredMetricsTieBreakers>
 </document>
