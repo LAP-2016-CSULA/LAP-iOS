@@ -29,7 +29,6 @@ class ViewSpecie: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        title = "Specie";
         let logo = UIImage(named: "topbaricon");
         let imageView = UIImageView(image:logo);
         self.bottomBar.titleView = imageView;
@@ -40,10 +39,8 @@ class ViewSpecie: UIViewController {
         self.imageView.layer.borderWidth = 1;
         self.imageView.layer.borderColor = UIColor(red: 187.0, green: 226.0, blue: 188.0, alpha: 1.0).CGColor;
 
-        self.imageView.kf_setImageWithResource(resource, placeholderImage: nil,
-            optionsInfo: [.Transition(ImageTransition.Fade(1))])
+        self.imageView.kf_setImageWithResource(resource, placeholderImage: nil,optionsInfo: [.Transition(ImageTransition.Fade(1))]);
         
-//        self.name.text = String(self.observation.specie["name"])
         title = String(self.observation.specie["name"]);
         
         //does not allow text view to be edited.

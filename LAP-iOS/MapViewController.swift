@@ -144,8 +144,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                     
                                     let location:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: lat, longitude: long)
                                     
-                                    let annotation = CustomPointAnnotation()
-                                    annotation.coordinate = location
+                                    let annotation = CustomPointAnnotation();
+                                    annotation.coordinate = location;
                                     annotation.title = String(jso["species"]["name"]);
                                     annotation.info = String(jso["species"]["description"]);
                                     annotation.treeID = Int(String(jso["id"]));
@@ -247,7 +247,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                     annotation.imageName = String(pin["image"]);
                                     annotation.specieID = pin["species"]["id"].int;
                                     annotation.location = CLLocationCoordinate2D(latitude: lat, longitude: long);
-                                    annotation.color = UIColor(colorLiteralRed: 0, green: 1, blue: 0, alpha: 1)
+                                    annotation.color = UIColor(colorLiteralRed: 0, green: 1, blue: 0, alpha: 1);
                                     self.MapView.addAnnotation(annotation);
                                 }
                                 self.combineCloseAnnotations()
