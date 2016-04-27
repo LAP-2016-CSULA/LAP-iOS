@@ -37,6 +37,9 @@ class ViewSpecie: UIViewController {
         let URL = NSURL(string: String(self.observation.specie["image"]))!
         let resource = Resource(downloadURL: URL, cacheKey: String(self.observation.specie["image"]))
         
+        self.imageView.layer.borderWidth = 1;
+        self.imageView.layer.borderColor = UIColor(red: 187.0, green: 226.0, blue: 188.0, alpha: 1.0).CGColor;
+
         self.imageView.kf_setImageWithResource(resource, placeholderImage: nil,
             optionsInfo: [.Transition(ImageTransition.Fade(1))])
         
@@ -45,6 +48,9 @@ class ViewSpecie: UIViewController {
         
         //does not allow text view to be edited.
         textView.editable = false
+        
+        textView.layer.borderWidth = 1;
+        textView.layer.borderColor = UIColor(red: 187.0, green: 226.0, blue: 188.0, alpha: 1.0).CGColor;
         
         //sets description on specie from API
         textView.text = String(self.observation.specie["description"]);

@@ -23,8 +23,8 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
 
+    @IBOutlet weak var topLabelQuestion: UILabel!
     @IBOutlet weak var bottomBar: UINavigationItem!
-    
     @IBOutlet var collectionView: UICollectionView!
     
     override func viewDidAppear(animated: Bool) {
@@ -33,11 +33,15 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
         }
     }
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad();
+        topLabelQuestion.text = "Is the tree in any of the following tree phenophases?";
+        topLabelQuestion.layer.borderWidth = 1;
+        topLabelQuestion.layer.borderColor = UIColor(red: 187.0, green: 226.0, blue: 188.0, alpha: 1.0).CGColor;
         let logo = UIImage(named: "topbaricon")
         let imageView = UIImageView(image:logo)
         self.bottomBar.titleView = imageView;
-        collectionView.allowsSelection = true
+        collectionView.allowsSelection = true;
+        
         let url = NSURL(string: "http://isitso.pythonanywhere.com/questions/")
         let request = NSURLRequest(URL: url!)
         
@@ -68,7 +72,7 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
                                     self.questions.append(String(temp["text"]))
                                 }
                                 
-                                print(self.questionsObject)
+//                                print(self.questionsObject)
                                 
                             }
                             dispatch_async(dispatch_get_main_queue()) {
@@ -100,6 +104,9 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
         cell.textDisplay.editable = false
         cell.textDisplay.userInteractionEnabled = false
         cell.checked = selected[indexPath.row]
+        
+        cell.layer.borderWidth = 1;
+        cell.layer.borderColor = UIColor(red: 187.0, green: 226.0, blue: 188.0, alpha: 1.0).CGColor;
         
         if(cell.checked!)
         {
@@ -208,7 +215,7 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
                                 "http://isitso.pythonanywhere.com/dailyupdates/",
                                 multipartFormData: {
                                     multipartFormData in
-                                    print(self.observation.specie)
+//                                    print(self.observation.specie)
                                     multipartFormData.appendBodyPart(data: String(tempObject["id"]).dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "tree")
                                     
                                     for object in self.selectedInts
@@ -231,8 +238,8 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
                                     switch encodingResult {
                                     case .Success(let upload, _, _ ):
                                         upload.responseJSON { response in
-                                            print("-------------")
-                                            print(response)
+//                                            print("-------------")
+//                                            print(response)
                                         }
                                     case .Failure(let encodingError):
                                         print("Failure")
@@ -273,7 +280,7 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
                     "http://isitso.pythonanywhere.com/dailyupdates/",
                     multipartFormData: {
                         multipartFormData in
-                        print(self.observation.specie)
+//                        print(self.observation.specie)
                         multipartFormData.appendBodyPart(data: String(self.observation.specie["treeID"]).dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "tree")
                         
                         for object in self.selectedInts

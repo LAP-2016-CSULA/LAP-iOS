@@ -118,7 +118,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is the tree in any of the following tree phenophases?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRz-2h-m32">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRz-2h-m32">
                                 <rect key="frame" x="0.0" y="20" width="600" height="26"/>
                                 <color key="backgroundColor" red="0.73333333329999995" green="0.8862745098" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -240,6 +240,7 @@
                         <outlet property="bottomBar" destination="Vtq-57-CrC" id="dPc-Rv-gUj"/>
                         <outlet property="collectionView" destination="eUU-vI-u0L" id="2Bf-ZI-F5J"/>
                         <outlet property="doneButton" destination="fAh-Rd-Vq0" id="wem-oG-E2s"/>
+                        <outlet property="topLabelQuestion" destination="jRz-2h-m32" id="Sok-f5-plQ"/>
                         <segue destination="cfg-UJ-CaU" kind="showDetail" identifier="toMap" id="gHe-5p-bbL"/>
                     </connections>
                 </viewController>
@@ -294,7 +295,7 @@
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="67K-kq-laQ">
                                 <rect key="frame" x="20" y="516" width="560" height="30"/>
-                                <color key="backgroundColor" red="0.72941176470000002" green="0.83921568629999999" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.89411764709999997" green="0.94509803920000002" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="ddo-zK-Zvm"/>
                                 </constraints>
@@ -391,7 +392,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hTp-o9-XvX">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTp-o9-XvX">
                                 <rect key="frame" x="20" y="28" width="560" height="552"/>
                                 <color key="backgroundColor" red="0.72941176470000002" green="0.83921568629999999" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -685,7 +686,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XhY-fn-bhg">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XhY-fn-bhg">
                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="140"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="130" id="l9E-Af-ILa"/>
@@ -820,17 +821,18 @@
                                                     </constraints>
                                                     <state key="normal" image="checkMark"/>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bd6-Kz-T79">
-                                                    <rect key="frame" x="162" y="0.0" width="128" height="107"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bd6-Kz-T79">
+                                                    <rect key="frame" x="143" y="0.0" width="128" height="107"/>
+                                                    <color key="backgroundColor" red="0.72941176470000002" green="0.83921568629999999" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="128" id="i7u-OT-zh2"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nrC-z0-bnb">
-                                                    <rect key="frame" x="20" y="0.0" width="134" height="107"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nrC-z0-bnb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="134" height="107"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -839,11 +841,11 @@
                                         <constraints>
                                             <constraint firstItem="bd6-Kz-T79" firstAttribute="centerY" secondItem="nrC-z0-bnb" secondAttribute="centerY" id="15x-jC-Bd1"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="MH6-ME-4NS" secondAttribute="trailing" id="2eu-jw-JyE"/>
-                                            <constraint firstItem="MH6-ME-4NS" firstAttribute="leading" secondItem="bd6-Kz-T79" secondAttribute="trailing" id="3uZ-oc-Nsd"/>
+                                            <constraint firstItem="MH6-ME-4NS" firstAttribute="leading" secondItem="bd6-Kz-T79" secondAttribute="trailing" constant="19" id="3uZ-oc-Nsd"/>
                                             <constraint firstItem="bd6-Kz-T79" firstAttribute="top" secondItem="rtl-0p-vmW" secondAttribute="topMargin" constant="-8" id="65C-E9-7kJ"/>
                                             <constraint firstItem="bd6-Kz-T79" firstAttribute="top" secondItem="MH6-ME-4NS" secondAttribute="top" constant="-8" id="7jK-Ly-Rz7"/>
-                                            <constraint firstItem="bd6-Kz-T79" firstAttribute="leading" secondItem="nrC-z0-bnb" secondAttribute="trailing" constant="8" id="Tjy-rF-69B"/>
-                                            <constraint firstItem="nrC-z0-bnb" firstAttribute="leading" secondItem="rtl-0p-vmW" secondAttribute="leading" constant="20" id="UmW-lL-MPB"/>
+                                            <constraint firstItem="bd6-Kz-T79" firstAttribute="leading" secondItem="nrC-z0-bnb" secondAttribute="trailing" constant="9" id="Tjy-rF-69B"/>
+                                            <constraint firstItem="nrC-z0-bnb" firstAttribute="leading" secondItem="rtl-0p-vmW" secondAttribute="leading" id="UmW-lL-MPB"/>
                                             <constraint firstItem="bd6-Kz-T79" firstAttribute="bottom" secondItem="MH6-ME-4NS" secondAttribute="bottom" constant="8" id="gGc-MG-pwO"/>
                                             <constraint firstItem="nrC-z0-bnb" firstAttribute="top" secondItem="rtl-0p-vmW" secondAttribute="topMargin" constant="-8" id="qag-27-wzd"/>
                                             <constraint firstItem="nrC-z0-bnb" firstAttribute="centerY" secondItem="rtl-0p-vmW" secondAttribute="centerY" id="vQo-uz-VOC"/>
@@ -860,7 +862,7 @@
                                     <outlet property="delegate" destination="AX2-Dt-PAE" id="WfY-Xu-QIL"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are there any birds feeding on the tree?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3g-Lo-bII">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3g-Lo-bII">
                                 <rect key="frame" x="0.0" y="20" width="600" height="26"/>
                                 <color key="backgroundColor" red="0.73333333329999995" green="0.8862745098" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -902,6 +904,7 @@
                     <connections>
                         <outlet property="bottomBar" destination="6DH-YX-71E" id="euX-nE-tD5"/>
                         <outlet property="collectionView" destination="ypp-aH-YXQ" id="ozl-wy-cwt"/>
+                        <outlet property="topLabelQuestion" destination="Y3g-Lo-bII" id="627-Zj-6aB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L1u-dc-1bc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -938,7 +941,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qnv-wW-MIy">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qnv-wW-MIy">
                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="140"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="130" id="2In-5K-Ca2"/>
@@ -1052,9 +1055,9 @@
         <image name="userarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dLp-q0-6R0"/>
-        <segue reference="Rwx-3E-aso"/>
         <segue reference="6lt-lo-ANv"/>
+        <segue reference="gHe-5p-bbL"/>
         <segue reference="bnj-WA-7GP"/>
+        <segue reference="4xL-Yl-iIt"/>
     </inferredMetricsTieBreakers>
 </document>

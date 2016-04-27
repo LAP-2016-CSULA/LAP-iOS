@@ -22,6 +22,7 @@ class BirdQuestionCollection : UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var bottomBar: UINavigationItem!
     
+    @IBOutlet weak var topLabelQuestion: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -29,11 +30,14 @@ class BirdQuestionCollection : UIViewController, UICollectionViewDelegate, UICol
         
         self.bottomBar.titleView = UIImageView(image: UIImage(named: "topbaricon"))
 
-        title = "Bird Questions";
+        title = "Birds";
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+        topLabelQuestion.text = "Are there any birds feeding on the tree?";
+        topLabelQuestion.layer.borderWidth = 1;
+        topLabelQuestion.layer.borderColor = UIColor(red: 187.0, green: 226.0, blue: 188.0, alpha: 1.0).CGColor;
+
         let myUrl = NSURL(string: "http://isitso.pythonanywhere.com/birds")
         let request = NSURLRequest(URL: myUrl!)
         
@@ -79,6 +83,9 @@ class BirdQuestionCollection : UIViewController, UICollectionViewDelegate, UICol
             as! BirdQuestionCell
         
         cell.name.text = String(birds[indexPath.row]["name"])
+        
+        cell.layer.borderWidth = 1;
+        cell.layer.borderColor = UIColor(red: 187.0, green: 226.0, blue: 188.0, alpha: 1.0).CGColor;
         
         let URL = NSURL(string: String(self.birds[indexPath.row]["image"]))!
         let resource = Resource(downloadURL: URL, cacheKey: String(self.birds[indexPath.row]["image"]))

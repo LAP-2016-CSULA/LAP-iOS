@@ -75,6 +75,8 @@ class SpeciesCollectionView : UIViewController, UICollectionViewDelegate, UIColl
         
         cell.specieName.text = String(self.observation.species[indexPath.row]["name"])
         
+        cell.layer.borderWidth = 1;
+        cell.layer.borderColor = UIColor(red: 187.0, green: 226.0, blue: 188.0, alpha: 1.0).CGColor;
         
         let URL = NSURL(string: String(self.observation.species[indexPath.row]["image"]))!
         let resource = Resource(downloadURL: URL, cacheKey: String(self.observation.species[indexPath.row]["image"]))
