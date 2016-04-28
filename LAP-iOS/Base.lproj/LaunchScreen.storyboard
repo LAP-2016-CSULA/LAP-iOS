@@ -18,15 +18,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="jNZ-HY-Eli">
-                                <rect key="frame" x="200" y="220" width="200" height="160"/>
+                                <rect key="frame" x="200" y="217" width="200" height="166"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="7Sv-ai-yyD"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="7Sv-ai-yyD"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="jNZ-HY-Eli" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="200" id="2hT-CL-EKS"/>
+                            <constraint firstItem="jNZ-HY-Eli" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="190" id="2hT-CL-EKS"/>
                             <constraint firstItem="jNZ-HY-Eli" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="FKv-FG-mfO"/>
                             <constraint firstItem="jNZ-HY-Eli" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Oan-BE-GP2"/>
                         </constraints>
