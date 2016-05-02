@@ -26,7 +26,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var trees = true;
     var userName:String = "";
     let locationManager = CLLocationManager()
-    var delAnnot = CustomPointAnnotation!();
+    var delAnnot:CustomPointAnnotation!;
     var observation: Observation!;
     var guestLoggedIn: Bool!;
     
@@ -62,7 +62,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if let tempAnnot = delAnnot
         {
             self.MapView.removeAnnotation(tempAnnot);
-            self.delAnnot = CustomPointAnnotation!();
+            self.delAnnot = nil;
         }
         
         let path = NSSearchPathForDirectoriesInDomains(
@@ -365,7 +365,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                 {
 
                                     if let t = JSON1["username"]! {
-                                        let tt = String(t) + "\nAccess: " + access
+                                        _ = String(t) + "\nAccess: " + access
 //                                        self.displayMessage(String(tt), title:"Welcome");
                                     }
                                     
@@ -376,7 +376,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                     {
                                         if let y = JSON1["last_name"]!
                                         {
-                                            let tt = String(t) + " " + String(y) + "\nAccess: " + access
+                                            _ = String(t) + " " + String(y) + "\nAccess: " + access
                                             self.userName = String(t);
 //                                            self.displayMessage(String(tt),title:"Welcome");
                                         }

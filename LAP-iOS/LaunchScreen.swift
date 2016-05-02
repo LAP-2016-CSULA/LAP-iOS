@@ -13,9 +13,9 @@ import Heimdallr
 class LaunchScreen : UIViewController {
     
     let ats = OAuthAccessTokenKeychainStore(service: "http://isitso.pythonanywhere.com/o/token/")
-    
-    var heimdallr : Heimdallr!
-    
+    var heimdallr : Heimdallr!;
+    let k = KeychainWrapper.standardKeychainAccess();
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -23,8 +23,8 @@ class LaunchScreen : UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         
-        let userName: String? = KeychainWrapper.stringForKey("username");
-        let userPassword: String? = KeychainWrapper.stringForKey("p")
+        let userName: String? = k.stringForKey("username");
+        let userPassword: String? = k.stringForKey("p")
         if userName != nil && userPassword != nil
         {
             var confirmed = false;
@@ -57,9 +57,9 @@ class LaunchScreen : UIViewController {
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isUserLoggedIn");
                         NSUserDefaults.standardUserDefaults().synchronize();
                         
-                        KeychainWrapper.setString(userName!, forKey:"username");
+                        self.k.setString(userName!, forKey:"username");
                         
-                        KeychainWrapper.setString(userPassword!, forKey: "p");
+                        self.k.setString(userPassword!, forKey: "p");
                         
                         self.performSegueWithIdentifier("toMap", sender: self)
                     }

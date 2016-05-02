@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
     let ats = OAuthAccessTokenKeychainStore(service: "http://isitso.pythonanywhere.com/o/token/");
     var heimdallr : Heimdallr!
     var guestLoggedIn = false;
+    let k = KeychainWrapper.standardKeychainAccess();
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +28,8 @@ class LoginViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        let retrievedUsername: String? = KeychainWrapper.stringForKey("username");
-        let pass: String? = KeychainWrapper.stringForKey("p")
+        let retrievedUsername: String? = k.stringForKey("username");
+        let pass: String? = k.stringForKey("p")
         if retrievedUsername != nil && pass != nil{
             login(retrievedUsername!, userPassword: pass!);
         }
@@ -115,8 +116,8 @@ class LoginViewController: UIViewController {
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isUserLoggedIn");
                     NSUserDefaults.standardUserDefaults().synchronize();
                     
-                    KeychainWrapper.setString(userName, forKey:"username");
-                    KeychainWrapper.setString(userPassword, forKey: "p");
+                    self.k.setString(userName, forKey:"username");
+                    self.k.setString(userPassword, forKey: "p");
                     
                     self.performSegueWithIdentifier("loginSuccessful", sender: self);
                 }

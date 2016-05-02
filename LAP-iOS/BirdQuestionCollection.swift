@@ -106,7 +106,7 @@ class BirdQuestionCollection : UIViewController, UICollectionViewDelegate, UICol
         
         cell.checkedButton?.layer.setValue(indexPath, forKey: "sendIndex")
         cell.checkedButton?.layer.setValue(cell, forKey: "sendCell")
-        cell.checkedButton?.addTarget(self, action: "checkMark:", forControlEvents: UIControlEvents.TouchUpInside)
+        cell.checkedButton?.addTarget(self, action: #selector(BirdQuestionCollection.checkMark(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         return cell
     }

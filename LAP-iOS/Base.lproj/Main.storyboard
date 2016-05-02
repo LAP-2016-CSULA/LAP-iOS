@@ -338,47 +338,11 @@
                         <outlet property="nextButton" destination="dDl-Kb-P1f" id="zjA-7A-HjD"/>
                         <outlet property="textView" destination="67K-kq-laQ" id="dY1-bb-alD"/>
                         <segue destination="y5M-TV-fT5" kind="showDetail" identifier="toTreeQuestions" animates="NO" action="showViewController:sender:" id="r2X-99-Z5E"/>
-                        <segue destination="xuf-nf-kkY" kind="showDetail" identifier="toBirdQuestions" action="showViewController:sender:" id="FrA-q6-GRM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5N-LF-E44" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2026" y="-320"/>
-        </scene>
-        <!--Questions-->
-        <scene sceneID="7eR-7B-V6F">
-            <objects>
-                <viewController id="xuf-nf-kkY" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="U9z-Xq-m2a"/>
-                        <viewControllerLayoutGuide type="bottom" id="WbL-aS-rsW"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ra2-fi-J0P">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bird Questions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQ0-OY-Ulx">
-                                <rect key="frame" x="20" y="289" width="560" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.72941176470000002" green="0.83921568629999999" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="DQ0-OY-Ulx" firstAttribute="trailing" secondItem="ra2-fi-J0P" secondAttribute="trailingMargin" id="ZH9-JY-fUJ"/>
-                            <constraint firstItem="DQ0-OY-Ulx" firstAttribute="leading" secondItem="ra2-fi-J0P" secondAttribute="leadingMargin" id="dia-Wd-10l"/>
-                            <constraint firstItem="DQ0-OY-Ulx" firstAttribute="centerY" secondItem="ra2-fi-J0P" secondAttribute="centerY" id="fl8-WB-QxZ"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Questions" id="b6Y-GC-z24">
-                        <barButtonItem key="backBarButtonItem" title="Questions" id="4J0-7e-Rc8"/>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ter-LZ-Uj6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2756" y="-320"/>
         </scene>
         <!--View Protocols-->
         <scene sceneID="ld0-SO-WzZ">
@@ -1055,9 +1019,9 @@
         <image name="userarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1S0-aG-Ehs"/>
-        <segue reference="ucn-LP-wTs"/>
-        <segue reference="dLp-q0-6R0"/>
+        <segue reference="gHe-5p-bbL"/>
+        <segue reference="F7z-zX-Gm6"/>
         <segue reference="6lt-lo-ANv"/>
+        <segue reference="4xL-Yl-iIt"/>
     </inferredMetricsTieBreakers>
 </document>
