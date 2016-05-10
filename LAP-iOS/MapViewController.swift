@@ -89,7 +89,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         //table doesnt exist
         if(!tableExists("treeTable"))
         {
-            print("Table Doesn't exist, Creating database")
+//            print("Table Doesn't exist, Creating database")
             try! db.run(treeTable.create(ifNotExists:true ) { t in
                 t.column(id, primaryKey: true)
                 t.column(species_id)
@@ -176,7 +176,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         else{
             let lastUpdate = String(NSUserDefaults.standardUserDefaults().valueForKey("lastUpdate")!)
             
-            print(lastUpdate);
+//            print(lastUpdate);
             let url = NSURL(string: "http://isitso.pythonanywhere.com/treespecies/")
             
             let request = NSURLRequest(URL: url!)
@@ -204,7 +204,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                     
                                     if(update)
                                     {
-                                        print("This tree has been modified")
+//                                        print("This tree has been modified")
                                         let updateRow = treeQuery.filter(id == tempInt)
                                         try! db.run(updateRow.update(image <- String(jso["image"])))
                                     }
@@ -262,7 +262,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                     {
                                         for(_,jso) in JSON(JSON1)
                                         {
-                                            print("deleted tree")
+//                                            print("deleted tree")
                                             let treeQuery = Table("treeTable")
                                             let tempInt : Int64 = Int64(String(jso["tree_id"]))!
                                             
@@ -419,7 +419,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("Errors: " + error.localizedDescription)
+//        print("Errors: " + error.localizedDescription)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -459,7 +459,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: {(alert: UIAlertAction!) -> Void in
             if(self.MapView.annotations.count == 1){
-                print("Only one annotation left! Which is the user! count = ", self.MapView.annotations.count);
+//                print("Only one annotation left! Which is the user! count = ", self.MapView.annotations.count);
                 return; // to prevent user from being removed from map
             }
             else{
@@ -497,7 +497,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }))
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: {(alert: UIAlertAction!) -> Void in
             if(self.MapView.annotations.count == 1){
-                print("Only one annotation left! Which is the user! count = ", self.MapView.annotations.count);
+//                print("Only one annotation left! Which is the user! count = ", self.MapView.annotations.count);
                 return; // to prevent user from being removed from map
             }
             else{
@@ -549,6 +549,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             self.observation.treeSelected.removeAll();
 
             self.observation.treeSelected.append(["image":(pin?.imageName)!, "name":(pin?.title)!, "description": (pin?.info)!, "treeID":(pin?.treeID)!, "type":["id": 1]]);
+            self.observation.treeID = pin?.treeID;
             self.observation.setTreeLocation((pin?.coordinate)!);
             self.observation.isUpdate = true;
             self.observation.specie = self.observation.treeSelected[0];

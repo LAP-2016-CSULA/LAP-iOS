@@ -27,6 +27,7 @@ class Observation{
     var species = [JSON]();
     var viewOnly = false;
     var guest = false;
+    var treeID: Int!;
     
     init(ats: OAuthAccessTokenKeychainStore, heimdallr: Heimdallr) {
         self.ats = ats;

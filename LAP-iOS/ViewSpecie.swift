@@ -20,6 +20,7 @@ class ViewSpecie: UIViewController {
     //text and image displayed.
     @IBOutlet var textView: UITextView!
     
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
     @IBOutlet var imageView: UIImageView!
     
     @IBOutlet weak var bottomBar: UINavigationItem!
@@ -52,10 +53,14 @@ class ViewSpecie: UIViewController {
         if(observation.viewOnly == true){
             nextButton.enabled = false;
             nextButton.tintColor = UIColor.clearColor();
+            deleteButton.enabled = false;
+            deleteButton.tintColor = UIColor.clearColor();
         }
         if(observation.guest == true){
             nextButton.enabled = false;
             nextButton.tintColor = UIColor.clearColor();
+            deleteButton.enabled = false;
+            deleteButton.tintColor = UIColor.clearColor();
         }
         
     }
@@ -71,6 +76,13 @@ class ViewSpecie: UIViewController {
         {
             performSegueWithIdentifier("toBirdQuestions", sender: self)
         }
+    }
+    
+    @IBAction func sendDeletionRequest(sender: AnyObject) {
+        let email = "hfsanchez89@yahoo.com";
+        let treeID = observation.treeID;
+        let url = NSURL(string: "mailto:\(email)?subject=Request%20to%20delete%20tree%20&body=Request%20to%20delete%20tree:%20\(treeID),%20Please%20provide%20a%20brief%20explanation:%20");
+        UIApplication.sharedApplication().openURL(url!);
     }
     
     @IBAction func cancelAdditionButton(sender: AnyObject) {

@@ -248,7 +248,7 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
                                 }
                             )
                             
-                            let actionSheetController: UIAlertController = UIAlertController(title: "Alert", message: "The tree has been added.", preferredStyle: .Alert)
+                            let actionSheetController: UIAlertController = UIAlertController(title: "Congratulations!", message: "The tree has been added", preferredStyle: .Alert)
                             
                             
                             let nextAction: UIAlertAction = UIAlertAction(title: "OK", style: .Default)
@@ -315,7 +315,7 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
                 )
             }
             
-            let actionSheetController: UIAlertController = UIAlertController(title: "Alert", message: "The tree has been updated.", preferredStyle: .Alert)
+            let actionSheetController: UIAlertController = UIAlertController(title: "Congratulations!", message: "The tree has been updated", preferredStyle: .Alert)
             
             
             let nextAction: UIAlertAction = UIAlertAction(title: "OK", style: .Default)
