@@ -63,6 +63,11 @@ class ViewSpecie: UIViewController {
             deleteButton.tintColor = UIColor.clearColor();
         }
         
+        if(observation.isUpdate == false){
+            deleteButton.enabled = false;
+            deleteButton.tintColor = UIColor.clearColor();
+        }
+        
     }
     
     @IBAction func toQuestions(sender: AnyObject)
@@ -79,10 +84,27 @@ class ViewSpecie: UIViewController {
     }
     
     @IBAction func sendDeletionRequest(sender: AnyObject) {
+//        ***
+//        Leaving this here for now, may use this to determine if user can delete trees without having to
+//        send emails
+//        print(self.observation.user["is_superuser"]);
+//        ***
         let email = "laphenology@gmail.com";
-        let treeID = observation.treeID;
+        let treeID = self.observation.treeID;
         let url = NSURL(string: "mailto:\(email)?subject=Request%20to%20delete%20tree%20&body=Request%20to%20delete%20tree:%20\(treeID),%20Please%20provide%20a%20brief%20explanation:%20");
-        UIApplication.sharedApplication().openURL(url!);
+        
+        let menu = UIAlertController(title: "Attention", message: "*You must email LAP administrator to request for tree to be removed*", preferredStyle: UIAlertControllerStyle.ActionSheet);
+        let sendEmailAction = UIAlertAction(title: "Email", style: .Default, handler: {(action: UIAlertAction!) in
+            UIApplication.sharedApplication().openURL(url!);
+        });
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {(alert: UIAlertAction!) -> Void in
+        });
+        
+        menu.addAction(sendEmailAction);
+        menu.addAction(cancelAction);
+        
+        presentViewController(menu, animated: true, completion: nil);
+
     }
     
     @IBAction func cancelAdditionButton(sender: AnyObject) {
