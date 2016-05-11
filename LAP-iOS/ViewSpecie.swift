@@ -91,7 +91,7 @@ class ViewSpecie: UIViewController {
 //        ***
         let email = "laphenology@gmail.com";
         let treeID = self.observation.treeID;
-        let url = NSURL(string: "mailto:\(email)?subject=Request%20to%20delete%20tree%20&body=Request%20to%20delete%20tree:%20\(treeID),%20Please%20provide%20a%20brief%20explanation:%20");
+        let url = NSURL(string: "mailto:\(email)?subject=Request%20to%20delete%20tree:%20\(treeID)%20&body=Request%20to%20delete%20tree:%20\(treeID),%20Please%20provide%20a%20brief%20explanation:%20");
         
         let menu = UIAlertController(title: "Attention", message: "*You must email LAP administrator to request for tree to be removed*", preferredStyle: UIAlertControllerStyle.ActionSheet);
         let sendEmailAction = UIAlertAction(title: "Email", style: .Default, handler: {(action: UIAlertAction!) in
