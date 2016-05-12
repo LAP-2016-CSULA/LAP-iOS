@@ -46,6 +46,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
     }
     override func viewWillAppear(animated: Bool) {
+        
+        super .viewWillAppear(true)
         self.pinList.removeAll()
         self.MapView.removeAnnotations(MapView.annotations)
 
@@ -86,6 +88,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let image = Expression<String>("image")
         let date_modified = Expression<String>("date_modified")
         
+        print(self.ats.retrieveAccessToken()!.accessToken)
+
         //table doesnt exist
         if(!tableExists("treeTable"))
         {
@@ -111,7 +115,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
             self.heimdallr.self.authenticateRequest(request)
             { (result) in
-                
                 
                 
                 //                print(self.ats.retrieveAccessToken()!.accessToken)
@@ -252,6 +255,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                 }
                                 self.combineCloseAnnotations()
                                 
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    
+                                    self.MapView.reloadInputViews();
+                                    
+                                }
                             }
                             
                             Alamofire.request(.GET, "http://isitso.pythonanywhere.com/deletedtrees", parameters: parameters)
@@ -267,6 +275,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                             let tempInt : Int64 = Int64(String(jso["tree_id"]))!
                                             
                                             try! db.run(treeQuery.filter(id == tempInt).delete())
+                                            
+                                        }
+                                        
+                                        dispatch_async(dispatch_get_main_queue()) {
+                                            
+                                            self.MapView.reloadInputViews();
+         
                                         }
                                     }
                             }
@@ -277,7 +292,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
             
             dispatch_async(dispatch_get_main_queue()) {
+                
                 self.MapView.reloadInputViews();
+                
                 let currentDate = NSDate()
                 
                 let dateFormatter = NSDateFormatter()

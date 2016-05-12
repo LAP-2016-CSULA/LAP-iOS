@@ -12,6 +12,7 @@ import Foundation
 import UIKit
 import Heimdallr
 import Kingfisher
+import SQLite
 
 class ViewSpecie: UIViewController {
 
@@ -56,6 +57,7 @@ class ViewSpecie: UIViewController {
             deleteButton.enabled = false;
             deleteButton.tintColor = UIColor.clearColor();
         }
+        
         if(observation.guest == true){
             nextButton.enabled = false;
             nextButton.tintColor = UIColor.clearColor();
@@ -74,6 +76,7 @@ class ViewSpecie: UIViewController {
     {
         if(String(self.observation.specie["type"]["id"]) == "1")
         {
+            
             performSegueWithIdentifier("toTreeQuestions", sender: self)
         }
         
@@ -89,22 +92,69 @@ class ViewSpecie: UIViewController {
 //        send emails
 //        print(self.observation.user["is_superuser"]);
 //        ***
-        let email = "laphenology@gmail.com";
-        let treeID = self.observation.treeID;
-        let url = NSURL(string: "mailto:\(email)?subject=Request%20to%20delete%20tree:%20\(treeID)%20&body=Request%20to%20delete%20tree:%20\(treeID),%20Please%20provide%20a%20brief%20explanation:%20");
         
-        let menu = UIAlertController(title: "Attention", message: "*You must email LAP administrator to request for tree to be removed*", preferredStyle: UIAlertControllerStyle.ActionSheet);
-        let sendEmailAction = UIAlertAction(title: "Email", style: .Default, handler: {(action: UIAlertAction!) in
-            UIApplication.sharedApplication().openURL(url!);
-        });
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {(alert: UIAlertAction!) -> Void in
-        });
-        
-        menu.addAction(sendEmailAction);
-        menu.addAction(cancelAction);
-        
-        presentViewController(menu, animated: true, completion: nil);
+        if(String(self.observation.user["is_superuser"]) == "true")
+        {
+            let myAlert = UIAlertController(title:"Alert", message:"Are you sure you want to delete this tree?", preferredStyle: UIAlertControllerStyle.Alert)
+            let yesAction = UIAlertAction(title: "Yes", style: .Default) { action ->
+                Void in
+                
+                let url = NSURL(string: "http://isitso.pythonanywhere.com/trees/")
+                let request = NSURLRequest(URL: url!)
 
+                
+                self.observation.heimdallr.self.authenticateRequest(request)
+                { (result) in
+                    switch result {
+                    case .Success:
+                        let parameters  = ["access_token": self.observation.ats.retrieveAccessToken()!.accessToken]
+                        
+                        Alamofire.request(.DELETE, "http://isitso.pythonanywhere.com/trees/"+String(self.observation.treeID)+"/", parameters: parameters)
+                            .responseJSON { response in
+                                
+                            
+                                let alert = UIAlertController(title: "Delete", message: "Tree has been deleted.", preferredStyle: UIAlertControllerStyle.Alert)
+                                let ok = UIAlertAction(title: "Ok", style: .Default){ action ->
+                                    Void in
+                                    
+                                    self.navigationController?.popToRootViewControllerAnimated(true)
+                                }
+                                
+                                alert.addAction(ok)
+                                self.presentViewController(alert, animated: true, completion: nil)
+                        }
+                    case .Failure:
+                        print("Failed")
+                    }
+                }
+            }
+            
+            let noAction = UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: nil)
+            
+            myAlert.addAction(yesAction);
+            myAlert.addAction(noAction);
+            self.presentViewController(myAlert, animated:true, completion: nil);
+
+        }
+        else
+        {
+            let email = "laphenology@gmail.com";
+            let treeID = self.observation.treeID;
+            let url = NSURL(string: "mailto:\(email)?subject=Request%20to%20delete%20tree:%20\(treeID)%20&body=Request%20to%20delete%20tree:%20\(treeID),%20Please%20provide%20a%20brief%20explanation:%20");
+            
+            let menu = UIAlertController(title: "Attention", message: "*You must email LAP administrator to request for tree to be removed*", preferredStyle: UIAlertControllerStyle.ActionSheet);
+            let sendEmailAction = UIAlertAction(title: "Email", style: .Default, handler: {(action: UIAlertAction!) in
+                UIApplication.sharedApplication().openURL(url!);
+            });
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {(alert: UIAlertAction!) -> Void in
+            });
+            
+            menu.addAction(sendEmailAction);
+            menu.addAction(cancelAction);
+            
+            presentViewController(menu, animated: true, completion: nil);
+
+        }
     }
     
     @IBAction func cancelAdditionButton(sender: AnyObject) {
