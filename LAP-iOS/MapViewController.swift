@@ -47,7 +47,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     override func viewWillAppear(animated: Bool) {
         
-        super .viewWillAppear(true)
         self.pinList.removeAll()
         self.MapView.removeAnnotations(MapView.annotations)
 

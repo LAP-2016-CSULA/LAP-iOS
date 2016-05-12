@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (3.4.0)
   - Argo (2.3.0)
   - Heimdallr (3.2.1):
     - Heimdallr/Core (= 3.2.1)
@@ -11,13 +10,11 @@ PODS:
   - SQLite.swift (0.10.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.0)
   - Heimdallr (~> 3.0)
   - Kingfisher (~> 2.0)
   - SQLite.swift (~> 0.10.1)
 
 SPEC CHECKSUMS:
-  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
   Argo: 3dbecf4204b1a3cdd1df88ebd5e23d01b652d34b
   Heimdallr: f4e8dfded98a884c015d47db19e48d45a962963c
   Kingfisher: 350869ed88d6451803b390475d977abdd9f0a357

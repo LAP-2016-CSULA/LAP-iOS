@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '55921C513D61DBA48A9F19FB'
+               BlueprintIdentifier = '566411685B22CC180CC146DB'
                BlueprintName = 'Heimdallr'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Heimdallr.framework'>
