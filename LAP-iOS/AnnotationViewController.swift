@@ -20,7 +20,8 @@ class AnnotationViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad();
+        
         let logo = UIImage(named: "topbaricon");
         let imageView = UIImageView(image:logo);
         self.bottomBar.titleView = imageView;
@@ -48,6 +49,8 @@ class AnnotationViewController: UIViewController, UICollectionViewDelegate, UICo
         
         let URL = NSURL(string: String(self.observation.treeList.annotationList[indexPath.row].imageName))!
         let resource = Resource(downloadURL: URL, cacheKey: nil);
+        
+        cell.image.kf_showIndicatorWhenLoading = true;
         
         cell.image.kf_setImageWithResource(resource, placeholderImage: nil,
             optionsInfo: [.Transition(ImageTransition.Fade(1))])

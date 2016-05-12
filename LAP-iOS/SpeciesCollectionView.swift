@@ -80,7 +80,7 @@ class SpeciesCollectionView : UIViewController, UICollectionViewDelegate, UIColl
         
         let URL = NSURL(string: String(self.observation.species[indexPath.row]["image"]))!
         let resource = Resource(downloadURL: URL, cacheKey: String(self.observation.species[indexPath.row]["image"]))
-        
+        cell.imageView.kf_showIndicatorWhenLoading = true;
         cell.imageView.kf_setImageWithResource(resource, placeholderImage: nil,
             optionsInfo: [.Transition(ImageTransition.Fade(1))])
         

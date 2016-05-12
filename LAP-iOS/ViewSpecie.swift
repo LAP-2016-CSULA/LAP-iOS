@@ -20,17 +20,14 @@ class ViewSpecie: UIViewController {
         
     //text and image displayed.
     @IBOutlet var textView: UITextView!
-    
     @IBOutlet weak var deleteButton: UIBarButtonItem!
     @IBOutlet var imageView: UIImageView!
-    
     @IBOutlet weak var bottomBar: UINavigationItem!
-//    @IBOutlet weak var name: UILabel!
     @IBOutlet var nextButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.imageView.kf_showIndicatorWhenLoading = true;
         let logo = UIImage(named: "topbaricon");
         let imageView = UIImageView(image:logo);
         self.bottomBar.titleView = imageView;
@@ -51,6 +48,7 @@ class ViewSpecie: UIViewController {
         //sets description on specie from API
         textView.text = String(self.observation.specie["description"]);
         
+//        Determine what buttons should be displayed on screen
         if(observation.viewOnly == true){
             nextButton.enabled = false;
             nextButton.tintColor = UIColor.clearColor();
@@ -72,8 +70,7 @@ class ViewSpecie: UIViewController {
         
     }
     
-    @IBAction func toQuestions(sender: AnyObject)
-    {
+    @IBAction func toQuestions(sender: AnyObject){
         if(String(self.observation.specie["type"]["id"]) == "1")
         {
             
@@ -90,7 +87,7 @@ class ViewSpecie: UIViewController {
 //        ***
 //        Leaving this here for now, may use this to determine if user can delete trees without having to
 //        send emails
-//        print(self.observation.user["is_superuser"]);
+        print(self.observation.user["is_superuser"]);
 //        ***
         
         if(String(self.observation.user["is_superuser"]) == "true")
