@@ -29,9 +29,10 @@ class Observation{
     var guest = false;
     var treeID: Int!;
     
-    init(ats: OAuthAccessTokenKeychainStore, heimdallr: Heimdallr) {
+    init(ats: OAuthAccessTokenKeychainStore, heimdallr: Heimdallr, user: JSON) {
         self.ats = ats;
         self.heimdallr = heimdallr;
+        self.user = user;
     }
     
     func setTreeLocation(treeLocation: CLLocationCoordinate2D){

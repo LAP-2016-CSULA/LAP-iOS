@@ -11,6 +11,7 @@ import UIKit
 import Heimdallr
 import Alamofire
 import Kingfisher
+import MapKit;
 
 class AnnotationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -70,10 +71,9 @@ class AnnotationViewController: UIViewController, UICollectionViewDelegate, UICo
             let indexPath = dest[0] as NSIndexPath
             
             let specieView = segue.destinationViewController as! ViewSpecie
+            self.observation.treeID = self.observation.treeList.annotationList[indexPath.row].treeID;
             self.observation.specie = ["image":(self.observation.treeList.annotationList[indexPath.row].imageName)!, "name":self.observation.treeList.annotationList[indexPath.row].title!, "description": self.observation.treeList.annotationList[indexPath.row].info!, "treeID":self.observation.treeList.annotationList[indexPath.row].treeID!, "type":["id": 1]];
             specieView.observation = self.observation;
-//            specieView.user = self.user
-//            specieView.isUpdate = true;
             
         }
     }

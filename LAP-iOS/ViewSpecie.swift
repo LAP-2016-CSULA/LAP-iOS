@@ -13,6 +13,7 @@ import UIKit
 import Heimdallr
 import Kingfisher
 import SQLite
+import MapKit;
 
 class ViewSpecie: UIViewController {
 
@@ -26,7 +27,7 @@ class ViewSpecie: UIViewController {
     @IBOutlet var nextButton: UIBarButtonItem!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad();
         self.imageView.kf_showIndicatorWhenLoading = true;
         let logo = UIImage(named: "topbaricon");
         let imageView = UIImageView(image:logo);
@@ -40,7 +41,7 @@ class ViewSpecie: UIViewController {
         title = String(self.observation.specie["name"]);
         
         //does not allow text view to be edited.
-        textView.editable = false
+        textView.editable = false;
         
         textView.layer.borderWidth = 1;
         textView.layer.borderColor = UIColor(red: 187.0, green: 226.0, blue: 188.0, alpha: 1.0).CGColor;
@@ -84,15 +85,9 @@ class ViewSpecie: UIViewController {
     }
     
     @IBAction func sendDeletionRequest(sender: AnyObject) {
-//        ***
-//        Leaving this here for now, may use this to determine if user can delete trees without having to
-//        send emails
-        print(self.observation.user["is_superuser"]);
-//        ***
-        
         if(String(self.observation.user["is_superuser"]) == "true")
         {
-            let myAlert = UIAlertController(title:"Alert", message:"Are you sure you want to delete this tree?", preferredStyle: UIAlertControllerStyle.Alert)
+            let myAlert = UIAlertController(title:"Warning", message:"Are you sure you want to delete this tree?", preferredStyle: UIAlertControllerStyle.Alert)
             let yesAction = UIAlertAction(title: "Yes", style: .Default) { action ->
                 Void in
                 
@@ -110,11 +105,12 @@ class ViewSpecie: UIViewController {
                             .responseJSON { response in
                                 
                             
-                                let alert = UIAlertController(title: "Delete", message: "Tree has been deleted.", preferredStyle: UIAlertControllerStyle.Alert)
+                                let alert = UIAlertController(title: "Attention", message: "Tree has been deleted", preferredStyle: UIAlertControllerStyle.Alert)
                                 let ok = UIAlertAction(title: "Ok", style: .Default){ action ->
                                     Void in
                                     
-                                    self.navigationController?.popToRootViewControllerAnimated(true)
+                                    self.navigationController?.popToRootViewControllerAnimated(true);
+                                    
                                 }
                                 
                                 alert.addAction(ok)
@@ -126,7 +122,7 @@ class ViewSpecie: UIViewController {
                 }
             }
             
-            let noAction = UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: nil)
+            let noAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil)
             
             myAlert.addAction(yesAction);
             myAlert.addAction(noAction);
@@ -139,7 +135,7 @@ class ViewSpecie: UIViewController {
             let treeID = self.observation.treeID;
             let url = NSURL(string: "mailto:\(email)?subject=Request%20to%20delete%20tree:%20\(treeID)%20&body=Request%20to%20delete%20tree:%20\(treeID),%20Please%20provide%20a%20brief%20explanation:%20");
             
-            let menu = UIAlertController(title: "Attention", message: "*You must email LAP administrator to request for tree to be removed*", preferredStyle: UIAlertControllerStyle.ActionSheet);
+            let menu = UIAlertController(title: "Warning", message: "You must email LAP administrator to request for tree to be deleted", preferredStyle: UIAlertControllerStyle.Alert);
             let sendEmailAction = UIAlertAction(title: "Email", style: .Default, handler: {(action: UIAlertAction!) in
                 UIApplication.sharedApplication().openURL(url!);
             });
@@ -163,10 +159,6 @@ class ViewSpecie: UIViewController {
         {
             let dest = segue.destinationViewController as! QuestionsCollectionView
             dest.observation = self.observation;
-        }
-        if(segue.identifier == "toBirdQuestions")
-        {
-            
         }
     }
 }

@@ -29,6 +29,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var delAnnot:CustomPointAnnotation!;
     var observation: Observation!;
     var guestLoggedIn: Bool!;
+    var user: JSON = [:];
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -45,12 +46,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         logIn();
         
     }
+    
+    override func viewDidAppear(animated: Bool) {
+    }
+    
     override func viewWillAppear(animated: Bool) {
-        
         self.pinList.removeAll()
-        self.MapView.removeAnnotations(MapView.annotations)
-
-        self.observation = Observation(ats: self.ats, heimdallr: self.heimdallr);
+        self.MapView.removeAnnotations(MapView.annotations);
+        self.observation = Observation(ats: self.ats, heimdallr: self.heimdallr, user: self.user);
+        
         if self.guestLoggedIn != nil{
             if(self.guestLoggedIn == true){
                 self.observation.guest = true;
@@ -87,7 +91,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let image = Expression<String>("image")
         let date_modified = Expression<String>("date_modified")
         
-        print(self.ats.retrieveAccessToken()!.accessToken)
+//        print(self.ats.retrieveAccessToken()!.accessToken)
 
         //table doesnt exist
         if(!tableExists("treeTable"))
@@ -302,7 +306,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
             }
         }
-        
+
     }
     
     
@@ -347,7 +351,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func logIn(){
-        self.observation = Observation(ats: self.ats, heimdallr: self.heimdallr);
+        self.observation = Observation(ats: self.ats, heimdallr: self.heimdallr, user: self.user);
         
         let url = NSURL(string: "http://isitso.pythonanywhere.com/userinfo/")
         let request = NSURLRequest(URL: url!);
@@ -366,6 +370,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                             
                             if let JSON1 = response.result.value {
                                 self.observation.user = JSON(JSON1)
+                                self.user = JSON(JSON1);
 
                                 var access = "Student"
                                 
@@ -436,9 +441,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
 //        print("Errors: " + error.localizedDescription)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
     }
     
     
@@ -563,7 +565,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         else{
             self.observation.treeSelected.removeAll();
-
             self.observation.treeSelected.append(["image":(pin?.imageName)!, "name":(pin?.title)!, "description": (pin?.info)!, "treeID":(pin?.treeID)!, "type":["id": 1]]);
             self.observation.treeID = pin?.treeID;
             self.observation.setTreeLocation((pin?.coordinate)!);
@@ -654,6 +655,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if(segue.identifier == "toUpdateTree"){
             let heim = segue.destinationViewController as! ViewSpecie
             heim.observation = self.observation;
+            
         }
         
         if(segue.identifier == "toAnnotationView"){
