@@ -134,15 +134,15 @@
                                 <items>
                                     <navigationItem id="Vtq-57-CrC">
                                         <leftBarButtonItems>
-                                            <barButtonItem systemItem="camera" id="JhF-It-MhY">
-                                                <connections>
-                                                    <action selector="takePicture:" destination="y5M-TV-fT5" id="Ow5-R8-67o"/>
-                                                </connections>
-                                            </barButtonItem>
                                             <barButtonItem image="bird" id="Ek6-qO-F90">
                                                 <inset key="imageInsets" minX="0.0" minY="2" maxX="0.0" maxY="-2"/>
                                                 <connections>
                                                     <segue destination="AX2-Dt-PAE" kind="showDetail" identifier="toBirdList" animates="NO" action="showViewController:sender:" id="KlQ-KI-Pc9"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem systemItem="camera" id="JhF-It-MhY">
+                                                <connections>
+                                                    <action selector="takePicture:" destination="y5M-TV-fT5" id="Ow5-R8-67o"/>
                                                 </connections>
                                             </barButtonItem>
                                         </leftBarButtonItems>
@@ -238,6 +238,7 @@
                     </view>
                     <connections>
                         <outlet property="bottomBar" destination="Vtq-57-CrC" id="dPc-Rv-gUj"/>
+                        <outlet property="cameraButton" destination="JhF-It-MhY" id="rpi-JD-vyK"/>
                         <outlet property="collectionView" destination="eUU-vI-u0L" id="2Bf-ZI-F5J"/>
                         <outlet property="doneButton" destination="fAh-Rd-Vq0" id="wem-oG-E2s"/>
                         <outlet property="topLabelQuestion" destination="jRz-2h-m32" id="Sok-f5-plQ"/>

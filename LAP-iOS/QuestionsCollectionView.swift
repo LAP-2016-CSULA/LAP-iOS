@@ -22,7 +22,7 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
     var observation: Observation!;
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
-
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topLabelQuestion: UILabel!
     @IBOutlet weak var bottomBar: UINavigationItem!
     @IBOutlet var collectionView: UICollectionView!
@@ -47,6 +47,10 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
         
         if(self.observation.isUpdate == true){
             self.doneButton.enabled = true;
+            if(self.observation.user["is_superuser"] == false){
+                self.cameraButton.enabled = false;
+                self.cameraButton.tintColor = UIColor.clearColor();
+            }
         }
         else{
             self.doneButton.enabled = false;
