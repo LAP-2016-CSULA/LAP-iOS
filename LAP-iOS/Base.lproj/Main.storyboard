@@ -346,11 +346,12 @@
                         <outlet property="nextButton" destination="dDl-Kb-P1f" id="zjA-7A-HjD"/>
                         <outlet property="textView" destination="67K-kq-laQ" id="dY1-bb-alD"/>
                         <segue destination="y5M-TV-fT5" kind="showDetail" identifier="toTreeQuestions" animates="NO" action="showViewController:sender:" id="r2X-99-Z5E"/>
+                        <segue destination="cfg-UJ-CaU" kind="showDetail" identifier="toMap" id="DCe-Xp-hm6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5N-LF-E44" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2026" y="-320"/>
+            <point key="canvasLocation" x="2042" y="-259"/>
         </scene>
         <!--View Protocols-->
         <scene sceneID="ld0-SO-WzZ">
@@ -1027,9 +1028,9 @@
         <image name="userarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gHe-5p-bbL"/>
-        <segue reference="F7z-zX-Gm6"/>
-        <segue reference="6lt-lo-ANv"/>
+        <segue reference="1S0-aG-Ehs"/>
+        <segue reference="DCe-Xp-hm6"/>
         <segue reference="4xL-Yl-iIt"/>
+        <segue reference="ErI-fR-65I"/>
     </inferredMetricsTieBreakers>
 </document>
