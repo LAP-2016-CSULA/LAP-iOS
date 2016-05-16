@@ -277,7 +277,7 @@
 				TargetAttributes = {
 					0B04623E1CAC93040010695E = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = KYAM2JXUB4;
+						DevelopmentTeam = 84MB9SZ9K4;
 					};
 					0B0462551CAC93040010695E = {
 						CreatedOnToolsVersion = 7.3;
@@ -559,7 +559,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "LAP-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "KevinArgumedo.LAP-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "HugoSanchez.LAP-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -572,7 +572,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "LAP-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "KevinArgumedo.LAP-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "HugoSanchez.LAP-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
