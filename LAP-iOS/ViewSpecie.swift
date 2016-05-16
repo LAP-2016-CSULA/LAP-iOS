@@ -110,7 +110,7 @@ class ViewSpecie: UIViewController {
                                     Void in
                                     
                                     self.navigationController?.popToRootViewControllerAnimated(true);
-                                    
+                                  //  self.performSegueWithIdentifier("toMap", sender: self);
                                 }
                                 
                                 alert.addAction(ok)
@@ -159,6 +159,15 @@ class ViewSpecie: UIViewController {
         {
             let dest = segue.destinationViewController as! QuestionsCollectionView
             dest.observation = self.observation;
+        }
+        if(segue.identifier == "toMap")
+        {
+            let navDest = segue.destinationViewController as! UINavigationController
+            
+            let heim = navDest.viewControllers.first as! MapViewController
+            heim.heimdallr = self.observation.heimdallr;
+            heim.ats = self.observation.ats;
+            
         }
     }
 }

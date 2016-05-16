@@ -193,11 +193,37 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 case .Success:
                     let parameters  = ["access_token": self.ats.retrieveAccessToken()!.accessToken, "time": lastUpdate]
                     
+                    Alamofire.request(.GET, "http://isitso.pythonanywhere.com/deletedtrees", parameters: parameters)
+                        .responseJSON
+                        { response in
+                            
+                            if let JSON1 = response.result.value
+                            {
+                                for(_,jso) in JSON(JSON1)
+                                {
+                                    let treeQuery = Table("treeTable")
+                                    let tempInt : Int64 = Int64(String(jso["tree_id"]))!
+                                    
+                                    try! db.run(treeQuery.filter(id == tempInt).delete())
+                                    
+                                }
+                                
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    
+                                    self.MapView.reloadInputViews();
+                                    
+                                }
+                            }
+                    }
+
+                    
                     Alamofire.request(.GET, "http://isitso.pythonanywhere.com/trees/", parameters: parameters)
                         .responseJSON { response in
                             
                             if let JSON1 = response.result.value
                             {
+                                
+                                
                                 for(_,jso) in JSON(JSON1)
                                 {
                                     let treeQuery = Table("treeTable")
@@ -264,30 +290,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                     
                                 }
                             }
-                            
-                            Alamofire.request(.GET, "http://isitso.pythonanywhere.com/deletedtrees", parameters: parameters)
-                                .responseJSON
-                                { response in
-                                    
-                                    if let JSON1 = response.result.value
-                                    {
-                                        for(_,jso) in JSON(JSON1)
-                                        {
-//                                            print("deleted tree")
-                                            let treeQuery = Table("treeTable")
-                                            let tempInt : Int64 = Int64(String(jso["tree_id"]))!
-                                            
-                                            try! db.run(treeQuery.filter(id == tempInt).delete())
-                                            
-                                        }
-                                        
-                                        dispatch_async(dispatch_get_main_queue()) {
-                                            
-                                            self.MapView.reloadInputViews();
-         
-                                        }
-                                    }
-                            }
+                        
                     }
                 case .Failure:
                     print("Failed")
