@@ -84,6 +84,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods/Alamofire.framework"
   install_framework "Pods/Argo.framework"
   install_framework "Pods/Heimdallr.framework"
   install_framework "Pods/Kingfisher.framework"
@@ -91,6 +92,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/SQLite.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods/Alamofire.framework"
   install_framework "Pods/Argo.framework"
   install_framework "Pods/Heimdallr.framework"
   install_framework "Pods/Kingfisher.framework"

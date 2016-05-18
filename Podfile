@@ -3,7 +3,7 @@ pod 'Heimdallr', '~> 3.0' , :inhibit_warnings => true
 
 inhibit_all_warnings!
 
-
+pod 'Alamofire', '~> 3.0'
 
 use_frameworks!
 
