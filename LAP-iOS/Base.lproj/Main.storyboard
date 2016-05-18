@@ -21,8 +21,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bUJ-64-wjL">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
-                                <color key="backgroundColor" red="0.72941176470000002" green="0.83921568629999999" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="P2d-C3-fE4" appends="YES" id="bic-5M-hMd"/>
@@ -60,7 +59,7 @@
                             <constraint firstItem="O6j-hm-t6x" firstAttribute="leading" secondItem="bUJ-64-wjL" secondAttribute="leading" id="bBJ-fR-gre"/>
                             <constraint firstItem="O6j-hm-t6x" firstAttribute="bottom" secondItem="Ahp-Jh-SLF" secondAttribute="top" id="pXU-yO-Z0v"/>
                             <constraint firstItem="O6j-hm-t6x" firstAttribute="trailing" secondItem="bUJ-64-wjL" secondAttribute="trailing" id="t2D-qc-FAv"/>
-                            <constraint firstItem="bUJ-64-wjL" firstAttribute="top" secondItem="SIG-4Q-drH" secondAttribute="bottom" constant="-64" id="u8X-6L-nC4"/>
+                            <constraint firstItem="bUJ-64-wjL" firstAttribute="top" secondItem="SIG-4Q-drH" secondAttribute="bottom" id="u8X-6L-nC4"/>
                             <constraint firstItem="bUJ-64-wjL" firstAttribute="bottom" secondItem="Ahp-Jh-SLF" secondAttribute="top" constant="-44" id="zuT-8b-nGq"/>
                         </constraints>
                     </view>
@@ -134,15 +133,15 @@
                                 <items>
                                     <navigationItem id="Vtq-57-CrC">
                                         <leftBarButtonItems>
-                                            <barButtonItem systemItem="camera" id="JhF-It-MhY">
-                                                <connections>
-                                                    <action selector="takePicture:" destination="y5M-TV-fT5" id="Ow5-R8-67o"/>
-                                                </connections>
-                                            </barButtonItem>
                                             <barButtonItem image="bird" id="Ek6-qO-F90">
                                                 <inset key="imageInsets" minX="0.0" minY="2" maxX="0.0" maxY="-2"/>
                                                 <connections>
                                                     <segue destination="AX2-Dt-PAE" kind="showDetail" identifier="toBirdList" animates="NO" action="showViewController:sender:" id="KlQ-KI-Pc9"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem systemItem="camera" id="JhF-It-MhY">
+                                                <connections>
+                                                    <action selector="takePicture:" destination="y5M-TV-fT5" id="Ow5-R8-67o"/>
                                                 </connections>
                                             </barButtonItem>
                                         </leftBarButtonItems>
@@ -238,6 +237,7 @@
                     </view>
                     <connections>
                         <outlet property="bottomBar" destination="Vtq-57-CrC" id="dPc-Rv-gUj"/>
+                        <outlet property="cameraButton" destination="JhF-It-MhY" id="rpi-JD-vyK"/>
                         <outlet property="collectionView" destination="eUU-vI-u0L" id="2Bf-ZI-F5J"/>
                         <outlet property="doneButton" destination="fAh-Rd-Vq0" id="wem-oG-E2s"/>
                         <outlet property="topLabelQuestion" destination="jRz-2h-m32" id="Sok-f5-plQ"/>
@@ -1028,9 +1028,9 @@
         <image name="userarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1S0-aG-Ehs"/>
-        <segue reference="DCe-Xp-hm6"/>
         <segue reference="4xL-Yl-iIt"/>
+        <segue reference="DCe-Xp-hm6"/>
+        <segue reference="F7z-zX-Gm6"/>
         <segue reference="ErI-fR-65I"/>
     </inferredMetricsTieBreakers>
 </document>

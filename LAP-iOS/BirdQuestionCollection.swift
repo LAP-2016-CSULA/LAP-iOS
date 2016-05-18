@@ -21,7 +21,6 @@ class BirdQuestionCollection : UIViewController, UICollectionViewDelegate, UICol
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var bottomBar: UINavigationItem!
-    
     @IBOutlet weak var topLabelQuestion: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -83,7 +82,7 @@ class BirdQuestionCollection : UIViewController, UICollectionViewDelegate, UICol
             as! BirdQuestionCell
         
         cell.name.text = String(birds[indexPath.row]["name"])
-        
+        cell.imageView.kf_showIndicatorWhenLoading = true;
         cell.layer.borderWidth = 1;
         cell.layer.borderColor = UIColor(red: 187.0, green: 226.0, blue: 188.0, alpha: 1.0).CGColor;
         
