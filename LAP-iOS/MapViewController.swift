@@ -419,7 +419,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
 
     func mapView(mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        print(mapView.camera.altitude);
         if(mapView.camera.altitude < 269){
             mapView.camera.altitude = 270;
         }
