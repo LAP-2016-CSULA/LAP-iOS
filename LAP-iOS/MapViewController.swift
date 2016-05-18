@@ -419,14 +419,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
 
     func mapView(mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        if(mapView.camera.altitude < 313){
-            mapView.camera.altitude = 314;
+        print(mapView.camera.altitude);
+        if(mapView.camera.altitude < 269){
+            mapView.camera.altitude = 270;
         }
     }
 
     func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        if(mapView.camera.altitude < 313){
-            mapView.camera.altitude = 314;
+        if(mapView.camera.altitude < 269){
+            mapView.camera.altitude = 270;
         }
     }
     
@@ -518,7 +519,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }))
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: {(alert: UIAlertAction!) -> Void in
             if(self.MapView.annotations.count == 1){
-//                print("Only one annotation left! Which is the user! count = ", self.MapView.annotations.count);
                 return; // to prevent user from being removed from map
             }
             else{
