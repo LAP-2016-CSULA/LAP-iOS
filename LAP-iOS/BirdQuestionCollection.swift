@@ -37,7 +37,7 @@ class BirdQuestionCollection : UIViewController, UICollectionViewDelegate, UICol
         topLabelQuestion.layer.borderWidth = 1;
         topLabelQuestion.layer.borderColor = UIColor(red: 187.0, green: 226.0, blue: 188.0, alpha: 1.0).CGColor;
 
-        let myUrl = NSURL(string: "http://isitso.pythonanywhere.com/birds")
+        let myUrl = NSURL(string: "http://lap.pythonanywhere.com/api/birds")
         let request = NSURLRequest(URL: myUrl!)
         
         self.observation.heimdallr.self.authenticateRequest(request)

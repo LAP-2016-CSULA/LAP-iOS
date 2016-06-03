@@ -91,7 +91,7 @@ class ViewSpecie: UIViewController {
             let yesAction = UIAlertAction(title: "Yes", style: .Default) { action ->
                 Void in
                 
-                let url = NSURL(string: "http://isitso.pythonanywhere.com/trees/")
+                let url = NSURL(string: "http://lap.pythonanywhere.com/api/trees/")
                 let request = NSURLRequest(URL: url!)
 
                 
@@ -101,7 +101,7 @@ class ViewSpecie: UIViewController {
                     case .Success:
                         let parameters  = ["access_token": self.observation.ats.retrieveAccessToken()!.accessToken]
                         
-                        Alamofire.request(.DELETE, "http://isitso.pythonanywhere.com/trees/"+String(self.observation.treeID)+"/", parameters: parameters)
+                        Alamofire.request(.DELETE, "http://lap.pythonanywhere.com/api/trees/"+String(self.observation.treeID)+"/", parameters: parameters)
                             .responseJSON { response in
                                 
                             

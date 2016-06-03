@@ -42,7 +42,7 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
         self.bottomBar.titleView = imageView;
         collectionView.allowsSelection = true;
         
-        let url = NSURL(string: "http://isitso.pythonanywhere.com/questions/")
+        let url = NSURL(string: "http://lap.pythonanywhere.com/api/questions/")
         let request = NSURLRequest(URL: url!)
         
         if(self.observation.isUpdate == true){
@@ -62,7 +62,7 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
                 case .Success:
                     let parameters  = ["access_token": self.observation.ats.retrieveAccessToken()!.accessToken]
                     
-                    Alamofire.request(.GET, "http://isitso.pythonanywhere.com/questions/", parameters: parameters)
+                    Alamofire.request(.GET, "http://lap.pythonanywhere.com/api/questions/", parameters: parameters)
                         .responseJSON { response in
                             
                             if let JSON1 = response.result.value
@@ -196,7 +196,7 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
             let treeLat = String(self.observation.treeLocation.latitude);
             Alamofire.upload(
                 .POST,
-                "http://isitso.pythonanywhere.com/trees/",
+                "http://lap.pythonanywhere.com/api/trees/",
                 multipartFormData: {
                     multipartFormData in
                     multipartFormData.appendBodyPart(data: treeLong.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "long")
@@ -216,7 +216,7 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
                             
                             Alamofire.upload(
                                 .POST,
-                                "http://isitso.pythonanywhere.com/dailyupdates/",
+                                "http://lap.pythonanywhere.com/api/dailyupdates/",
                                 multipartFormData: {
                                     multipartFormData in
 //                                    print(self.observation.specie)
@@ -281,7 +281,7 @@ class QuestionsCollectionView : UIViewController, UICollectionViewDelegate, UICo
             {
                 Alamofire.upload(
                     .POST,
-                    "http://isitso.pythonanywhere.com/dailyupdates/",
+                    "http://lap.pythonanywhere.com/api/dailyupdates/",
                     multipartFormData: {
                         multipartFormData in
 //                        print(self.observation.specie)

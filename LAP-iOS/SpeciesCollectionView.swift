@@ -26,7 +26,7 @@ class SpeciesCollectionView : UIViewController, UICollectionViewDelegate, UIColl
         let imageView = UIImageView(image:logo);
         self.bottomBar.titleView = imageView;
         title = "Species";
-        let url = NSURL(string: "http://isitso.pythonanywhere.com/treespecies")
+        let url = NSURL(string: "http://lap.pythonanywhere.com/api/treespecies")
         let request = NSURLRequest(URL: url!)
         
         

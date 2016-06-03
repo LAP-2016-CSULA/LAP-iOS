@@ -12,7 +12,7 @@ import Heimdallr
 
 class LaunchScreen : UIViewController {
     
-    let ats = OAuthAccessTokenKeychainStore(service: "http://isitso.pythonanywhere.com/o/token/")
+    let ats = OAuthAccessTokenKeychainStore(service: "http://lap.pythonanywhere.com/o/token/")
     var heimdallr : Heimdallr!;
     let k = KeychainWrapper.standardKeychainAccess();
 
@@ -28,9 +28,9 @@ class LaunchScreen : UIViewController {
         if userName != nil && userPassword != nil
         {
             var confirmed = false;
-            let tokenURL = NSURL(string: "http://isitso.pythonanywhere.com/o/token/")!
-            let identifier: String  =  "UEnyWPl9HbI7H1cX8T282IQ01xIF8Y9RWC02jYUh"
-            let secret: String = "h1HwH0Br8LGYVigcOdzeYxn3mcCjunxq2CCfbyLTnX8wBbp7ZrBO20oOBiFWkN6rReegKz9lVxO30iLfZ8eheeWTPx3KEPEBHOjMrlFnmOPKm0i57trBfWjHvzisRLXH";
+            let tokenURL = NSURL(string: "http://lap.pythonanywhere.com/o/token/")!
+            let identifier: String  =  "jDrkG226oJROtk53UCuyWKkvYpA5Wpi2iivMa2LV"
+            let secret: String = "go7XmobVllAaZz5NlD6v7lgoN9DcETtU1yZNDvHtbjKAUiuBBJKeMfWKVmBCqnw1N1SOy31aePwPb7JWz8dXNAVPpb7ZPBayOWsMEGZJCP6VrZeypXBVvIUr5Z3XeWqr";
             
             let credential = OAuthClientCredentials(id: identifier, secret: secret)
             

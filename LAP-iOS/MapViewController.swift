@@ -113,7 +113,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 t.column(date_modified)
                 })
             
-            let url = NSURL(string: "http://isitso.pythonanywhere.com/treespecies/")
+            let url = NSURL(string: "http://lap.pythonanywhere.com/api/treespecies/")
             let request = NSURLRequest(URL: url!)
             
             self.heimdallr.self.authenticateRequest(request)
@@ -125,7 +125,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 case .Success:
                     let parameters  = ["access_token": self.ats.retrieveAccessToken()!.accessToken]
                     
-                    Alamofire.request(.GET, "http://isitso.pythonanywhere.com/trees/?format=json", parameters: parameters)
+                    Alamofire.request(.GET, "http://lap.pythonanywhere.com/api/trees/?format=json", parameters: parameters)
                         .responseJSON { response in
                             
                             if let JSON1 = response.result.value
@@ -183,7 +183,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let lastUpdate = String(NSUserDefaults.standardUserDefaults().valueForKey("lastUpdate")!)
             
 //            print(lastUpdate);
-            let url = NSURL(string: "http://isitso.pythonanywhere.com/treespecies/")
+            let url = NSURL(string: "http://lap.pythonanywhere.com/api/treespecies/")
             
             let request = NSURLRequest(URL: url!)
             self.heimdallr.self.authenticateRequest(request)
@@ -193,7 +193,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 case .Success:
                     let parameters  = ["access_token": self.ats.retrieveAccessToken()!.accessToken, "time": lastUpdate]
                     
-                    Alamofire.request(.GET, "http://isitso.pythonanywhere.com/deletedtrees", parameters: parameters)
+                    Alamofire.request(.GET, "http://lap.pythonanywhere.com/api/deletedtrees", parameters: parameters)
                         .responseJSON
                         { response in
                             
@@ -217,7 +217,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     }
 
                     
-                    Alamofire.request(.GET, "http://isitso.pythonanywhere.com/trees/", parameters: parameters)
+                    Alamofire.request(.GET, "http://lap.pythonanywhere.com/api/trees/", parameters: parameters)
                         .responseJSON { response in
                             
                             if let JSON1 = response.result.value
@@ -356,7 +356,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func logIn(){
         self.observation = Observation(ats: self.ats, heimdallr: self.heimdallr, user: self.user);
         
-        let url = NSURL(string: "http://isitso.pythonanywhere.com/userinfo/")
+        let url = NSURL(string: "http://lap.pythonanywhere.com/api/userinfo/")
         let request = NSURLRequest(URL: url!);
         
         _ = self.heimdallr.self.authenticateRequest(request)
@@ -366,7 +366,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 case .Success:
                     let parameters  = ["access_token": self.ats.retrieveAccessToken()!.accessToken]
                     
-                    Alamofire.request(.GET, "http://isitso.pythonanywhere.com/userinfo/", parameters: parameters)
+                    Alamofire.request(.GET, "http://lap.pythonanywhere.com/api/userinfo/", parameters: parameters)
                         .responseJSON { response in
                             
                             
@@ -638,7 +638,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if(segue.identifier == "toSpecies")
         {
             let heim = segue.destinationViewController as! SpeciesCollectionView
-            self.observation.link = "http://isitso.pythonanywhere.com/treespecies/";
+            self.observation.link = "http://lap.pythonanywhere.com/api/treespecies/";
             self.observation.viewOnly = true;
             heim.observation = self.observation;
         }
@@ -646,7 +646,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if(segue.identifier == "toTrees")
         {
             let heim = segue.destinationViewController as! SpeciesCollectionView
-            self.observation.link = "http://isitso.pythonanywhere.com/treespecies";
+            self.observation.link = "http://lap.pythonanywhere.com/api/treespecies";
             heim.observation = self.observation;
         }
         
