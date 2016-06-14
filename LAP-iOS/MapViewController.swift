@@ -19,6 +19,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var MapView: MKMapView!
     @IBOutlet weak var addTreeOnUserButton: UIBarButtonItem!
     @IBOutlet weak var bottomBar: UINavigationItem!
+    @IBOutlet weak var infoButton: UIBarButtonItem!
     
     var heimdallr : Heimdallr!
     var ats : OAuthAccessTokenKeychainStore!
@@ -33,6 +34,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        self.infoButton.enabled = false;
+        self.infoButton.tintColor = UIColor.clearColor();
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()

@@ -81,6 +81,7 @@
                         <outlet property="MapView" destination="bUJ-64-wjL" id="du7-EI-89c"/>
                         <outlet property="addTreeOnUserButton" destination="Wfc-mV-sMo" id="0LY-dI-bhE"/>
                         <outlet property="bottomBar" destination="GM9-5R-89C" id="WVK-5a-vkM"/>
+                        <outlet property="infoButton" destination="zCN-r4-fIr" id="1nN-Mf-eyl"/>
                         <outlet property="searchDisplayController" destination="LX9-B3-Yt6" id="JbI-w3-WkT"/>
                         <segue destination="eSZ-4D-Qf8" kind="showDetail" identifier="loginView" id="4xL-Yl-iIt"/>
                         <segue destination="Ou9-2T-j1Y" kind="show" identifier="toTrees" id="6lt-lo-ANv"/>
